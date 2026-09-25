@@ -13,6 +13,7 @@ meta = """<meta charset="utf-8">
 <meta property="og:description" content="Codes, heroes, tier list, rank guide, rune odds and calculators for Hero Incremental on Roblox.">
 <meta property="og:image" content="img/Hero_Solace.webp">
 <meta name="theme-color" content="#0a1224">
+<meta name="google-site-verification" content="FJ00bImACFERceqv10BLJuMgPNszUCqIstSLtMqbvSM" />
 <link rel="icon" href="img/HeroToken.webp">
 """
 out = "<!doctype html>\n<html lang=\"en\">\n<head>\n" + meta + head + "\n</head>\n<body>" + body + "\n</body>\n</html>\n"
