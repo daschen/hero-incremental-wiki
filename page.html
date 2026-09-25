@@ -1,0 +1,1123 @@
+<title>Hero Incremental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,600;1,700;1,800;1,900&family=Jost:wght@400;500;600&display=swap">
+<style>
+:root {
+  color-scheme: dark;
+  --night: #0a1224;
+  --night-2: #0e1830;
+  --panel: #121f38;
+  --panel-2: #172745;
+  --line: #26395c;
+  --orange: #f99e1a;
+  --orange-hot: #ffb547;
+  --sky: #3fc1ff;
+  --ice: #eef4ff;
+  --muted: #93a6c6;
+  --dim: #62759a;
+  --good: #52e08a;
+  --warn: #ffcf5a;
+  --tank: #ffc83c;
+  --damage: #ff5a64;
+  --support: #52e08a;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Jost", "Futura", "Century Gothic", "Segoe UI", sans-serif;
+  --cut: 16px;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { background: var(--night); }
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--ice);
+  font: 400 16px/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+/* backdrop: two stage lights + a faint triangle grid, like a menu screen */
+body {
+  background:
+    radial-gradient(900px 520px at 88% -8%, rgba(249, 158, 26, 0.20), transparent 62%),
+    radial-gradient(800px 600px at -10% 110%, rgba(63, 193, 255, 0.18), transparent 60%),
+    repeating-linear-gradient(60deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 44px),
+    repeating-linear-gradient(-60deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 44px),
+    linear-gradient(180deg, #0c1730 0%, var(--night) 55%);
+  background-color: var(--night);
+  background-attachment: fixed;
+}
+a { color: var(--sky); }
+img { max-width: 100%; display: block; }
+h1, h2, h3, h4 { font-family: var(--display); font-style: italic; font-weight: 800; text-transform: uppercase; line-height: 0.95; margin: 0; text-wrap: balance; letter-spacing: 0.01em; }
+p { margin: 0; }
+.num { font-family: var(--display); font-weight: 700; font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* ---------------------------------------------------------------- top bar */
+.topbar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  background: linear-gradient(180deg, rgba(10, 18, 36, 0.96), rgba(10, 18, 36, 0.88));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar-in { max-width: 1240px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 22px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ice); flex-shrink: 0; }
+.brand svg { width: 38px; height: 38px; }
+.brand b { font-family: var(--display); font-style: italic; font-weight: 900; font-size: 26px; letter-spacing: 0.02em; line-height: 1; }
+.brand b span { color: var(--orange); }
+.nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; flex: 1; min-width: 0; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a {
+  flex-shrink: 0;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 14px;
+  transform: skewX(-14deg);
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s, background 0.15s;
+}
+.nav a > span { display: inline-block; transform: skewX(14deg); }
+.nav a:hover { color: var(--ice); background: rgba(255,255,255,0.05); }
+.nav a[aria-current="page"] { color: var(--night); background: var(--orange); }
+.play-mini { flex-shrink: 0; }
+
+/* ---------------------------------------------------------------- shared parts */
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; }
+.page { padding-block: 40px 72px; display: grid; gap: 28px; }
+.page-head { display: grid; gap: 10px; max-width: 760px; }
+.eyebrow { font-family: var(--display); font-weight: 700; font-style: italic; font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; width: 26px; height: 3px; background: var(--orange); transform: skewX(-30deg); }
+.page-head h1 { font-size: clamp(44px, 7vw, 76px); }
+.lede { color: var(--muted); font-size: 17px; max-width: 64ch; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--display); font-style: italic; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer; border: 0;
+  padding: 12px 30px;
+  transform: skewX(-14deg);
+  transition: transform 0.15s, filter 0.15s, background 0.15s;
+}
+.btn > span { display: inline-flex; align-items: center; gap: 10px; transform: skewX(14deg); }
+.btn-primary { background: var(--orange); color: #1a0f00; box-shadow: 0 8px 30px -8px rgba(249,158,26,0.7); }
+.btn-primary:hover { background: var(--orange-hot); transform: skewX(-14deg) translateY(-2px); }
+.btn-ghost { background: rgba(63,193,255,0.08); color: var(--ice); box-shadow: inset 0 0 0 2px var(--sky); }
+.btn-ghost:hover { background: rgba(63,193,255,0.2); }
+.btn-sm { font-size: 15px; padding: 7px 16px; }
+
+.panel {
+  position: relative;
+  background: linear-gradient(160deg, var(--panel-2), var(--panel) 60%);
+  clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)));
+  padding: 24px;
+}
+.panel::before { content: ""; position: absolute; left: 0; top: 0; width: 64px; height: 3px; background: var(--accent, var(--orange)); }
+.panel h2 { font-size: 30px; margin-bottom: 14px; }
+.panel h3 { font-size: 22px; }
+
+.chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; background: rgba(255,255,255,0.06); color: var(--muted); transform: skewX(-12deg); }
+.chip > span { display: inline-flex; align-items: center; gap: 6px; transform: skewX(12deg); }
+.chip img { width: 18px; height: 18px; }
+.pill-active { background: rgba(82,224,138,0.14); color: var(--good); }
+.pill-warn { background: rgba(255,207,90,0.14); color: var(--warn); }
+
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { font-family: var(--display); font-weight: 700; font-style: italic; letter-spacing: 0.1em; text-transform: uppercase; font-size: 14px; color: var(--muted); text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--line); white-space: nowrap; }
+td { padding: 11px 12px; border-bottom: 1px solid rgba(38,57,92,0.6); vertical-align: middle; }
+td.r, th.r { text-align: right; }
+tbody tr:hover td { background: rgba(255,255,255,0.025); }
+
+/* ---------------------------------------------------------------- home */
+.hero-banner { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 36px; align-items: center; padding-block: 56px 20px; }
+.hero-banner h1 { font-size: clamp(56px, 9.4vw, 124px); line-height: 0.86; }
+.hero-banner h1 .l2 { display: block; color: var(--orange); -webkit-text-stroke: 0; }
+.hero-banner h1 .l1 { display: block; }
+.hero-copy { display: grid; gap: 22px; }
+.hero-copy .lede { font-size: 19px; color: #c3d1ea; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px 18px; }
+.stat-strip { display: flex; flex-wrap: wrap; gap: 8px 26px; padding-top: 8px; }
+.stat-strip div { display: grid; }
+.stat-strip b { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 34px; line-height: 1; }
+.stat-strip span { font-family: var(--display); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; font-size: 13px; color: var(--muted); }
+
+.lineup { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding-bottom: 34px; }
+.lineup a {
+  position: relative; display: block; aspect-ratio: 1 / 1.08; max-width: 100%;
+  clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%);
+  background: var(--c);
+  transition: transform 0.25s ease, filter 0.25s;
+  filter: saturate(0.9);
+}
+.lineup a:nth-child(3n+2) { transform: translateY(34px); }
+.lineup a img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+.lineup a::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(5,10,22,0.85) 0%, transparent 42%); }
+.lineup a::after { content: attr(data-name); position: absolute; z-index: 2; left: 0; right: 0; bottom: 10px; text-align: center; font-family: var(--display); font-style: italic; font-weight: 900; font-size: 20px; letter-spacing: 0.08em; color: #fff; }
+.lineup a:hover { filter: saturate(1.15) brightness(1.1); }
+.lineup a:nth-child(3n+2):hover { transform: translateY(26px); }
+.lineup a:not(:nth-child(3n+2)):hover { transform: translateY(-8px); }
+.lineup-glow { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: linear-gradient(90deg, transparent, var(--orange), var(--sky), transparent); }
+
+.home-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+.home-grid .span2 { grid-column: 1 / -1; }
+.code-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(38,57,92,0.7); }
+.code-row:last-child { border-bottom: 0; }
+.code-tag { font-family: var(--display); font-style: italic; font-weight: 900; font-size: 26px; letter-spacing: 0.06em; color: var(--ice); background: rgba(249,158,26,0.12); box-shadow: inset 3px 0 0 var(--orange); padding: 2px 14px; }
+.code-reward { color: #c3d1ea; font-size: 15px; }
+.code-reward small { display: block; color: var(--dim); font-size: 13px; }
+.copy { font-family: var(--display); font-style: italic; font-weight: 800; letter-spacing: 0.08em; font-size: 15px; padding: 7px 16px; border: 0; cursor: pointer; background: var(--sky); color: #04203a; transform: skewX(-14deg); }
+.copy > span { display: inline-block; transform: skewX(14deg); }
+.copy.done { background: var(--good); }
+
+.quick { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.quick a { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; align-items: center; text-decoration: none; color: var(--ice); padding: 14px; background: rgba(255,255,255,0.03); box-shadow: inset 0 0 0 1px var(--line); transition: background 0.15s, box-shadow 0.15s; }
+.quick a:hover { background: rgba(249,158,26,0.08); box-shadow: inset 0 0 0 1px var(--orange); }
+.quick b { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 22px; text-transform: uppercase; line-height: 1; display: block; }
+.quick small { color: var(--muted); font-size: 13px; line-height: 1.35; display: block; margin-top: 4px; }
+
+.keys { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px 18px; }
+.key { display: flex; align-items: center; gap: 12px; font-size: 15px; color: #c3d1ea; }
+kbd { display: inline-grid; place-items: center; min-width: 38px; height: 34px; padding: 0 8px; font-family: var(--display); font-weight: 800; font-size: 17px; color: var(--ice); background: linear-gradient(180deg, #243a61, #172745); box-shadow: inset 0 -3px 0 #0b1426, inset 0 0 0 1px #34507e; }
+
+/* ---------------------------------------------------------------- heroes */
+.role-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.role-tabs button { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; border: 0; cursor: pointer; padding: 8px 18px; color: var(--muted); background: rgba(255,255,255,0.05); transform: skewX(-14deg); }
+.role-tabs button > span { display: inline-flex; align-items: center; gap: 8px; transform: skewX(14deg); }
+.role-tabs button img { width: 22px; height: 22px; }
+.role-tabs button[aria-pressed="true"] { color: #1a0f00; background: var(--orange); }
+
+.hero-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+.hero-tile {
+  position: relative; border: 0; padding: 0; cursor: pointer; aspect-ratio: 3 / 4; max-width: 100%;
+  background: var(--c);
+  clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+  transition: transform 0.2s, filter 0.2s;
+  filter: grayscale(0.35) brightness(0.85);
+}
+.hero-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; transform: scale(1.3); transform-origin: 50% 25%; }
+.hero-tile .name { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 8px 8px; font-family: var(--display); font-style: italic; font-weight: 900; font-size: 19px; letter-spacing: 0.06em; color: #fff; text-align: center; background: linear-gradient(0deg, rgba(5,10,22,0.92), transparent); }
+.hero-tile .role-ic { position: absolute; top: 8px; right: 16%; width: 24px; height: 24px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.7)); }
+.hero-tile:hover { filter: none; transform: translateY(-4px); }
+.hero-tile[aria-pressed="true"] { filter: none; box-shadow: inset 0 -5px 0 var(--orange); }
+.hero-tile[aria-pressed="true"]::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 3px rgba(255,255,255,0.85); }
+
+.hero-detail { --accent: var(--c, var(--orange)); display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 28px; align-items: start; }
+.hd-portrait { position: relative; aspect-ratio: 1; background: var(--c); clip-path: polygon(0 0, 100% 0, 100% 86%, 86% 100%, 0 100%); overflow: hidden; }
+.hd-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.hd-body { display: grid; gap: 18px; min-width: 0; }
+.hd-name { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px 18px; }
+.hd-name h2 { font-size: clamp(48px, 7vw, 84px); margin: 0; color: var(--ice); }
+.hd-tag { font-family: var(--display); font-style: italic; font-weight: 700; font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c); }
+.hd-desc { color: #c3d1ea; font-size: 17px; max-width: 62ch; }
+.kit { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.kit-card { background: rgba(5,10,22,0.45); box-shadow: inset 0 0 0 1px var(--line); padding: 14px; display: grid; gap: 8px; align-content: start; }
+.kit-card header { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 10px; align-items: center; }
+.kit-card header img { width: 44px; height: 44px; }
+.kit-card .slot { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c); display: block; }
+.kit-card h4 { font-size: 21px; line-height: 1; }
+.kit-card p { font-size: 14px; color: #b7c6e0; line-height: 1.5; }
+.kit-card .stats { display: flex; flex-wrap: wrap; gap: 6px; }
+.kit-card .stats span { font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: 0.05em; padding: 1px 8px; background: rgba(255,255,255,0.06); color: var(--ice); }
+.kit-weapon-icon { width: 44px; height: 44px; display: grid; place-items: center; background: var(--c); clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%); }
+.kit-weapon-icon svg { width: 24px; height: 24px; }
+
+/* ---------------------------------------------------------------- tier list */
+.tier-row { display: grid; grid-template-columns: 96px minmax(0, 1fr); background: rgba(5,10,22,0.35); box-shadow: inset 0 0 0 1px var(--line); }
+.tier-row + .tier-row { margin-top: 10px; }
+.tier-label { display: grid; place-items: center; font-family: var(--display); font-style: italic; font-weight: 900; font-size: 56px; color: #140c00; background: var(--t); clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%); }
+.tier-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; padding: 12px 12px 12px 18px; }
+.tier-item { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; align-items: center; }
+.tier-item .pic { width: 64px; height: 64px; background: var(--c); clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%); overflow: hidden; }
+.tier-item .pic img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.3); transform-origin: 50% 30%; }
+.tier-item b { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 21px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; line-height: 1.1; }
+.tier-item b img { width: 18px; height: 18px; }
+.tier-item p { font-size: 14px; color: #b7c6e0; line-height: 1.4; }
+
+/* ---------------------------------------------------------------- ranks */
+.ladder td:first-child { width: 220px; }
+.rank-badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-style: italic; font-weight: 800; font-size: 20px; text-transform: uppercase; white-space: nowrap; }
+.rank-badge i { width: 30px; height: 30px; background: linear-gradient(160deg, var(--b), var(--a)); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); display: grid; place-items: center; font-style: normal; font-size: 15px; color: #1a1206; }
+.unlocks { display: flex; flex-wrap: wrap; gap: 6px; }
+.mult { color: var(--orange); }
+
+.tips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 28px; }
+.tip { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; align-items: start; }
+.tip img { width: 40px; height: 40px; }
+.tip b { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 19px; text-transform: uppercase; display: block; line-height: 1.1; margin-bottom: 2px; }
+.tip p { font-size: 15px; color: #b7c6e0; }
+
+/* ---------------------------------------------------------------- runes + tools */
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 16px; letter-spacing: 0.06em; text-transform: uppercase; border: 0; cursor: pointer; padding: 7px 16px; color: var(--muted); background: rgba(255,255,255,0.05); transform: skewX(-14deg); }
+.seg button > span { display: inline-block; transform: skewX(14deg); }
+.seg button[aria-pressed="true"] { background: var(--rc, var(--orange)); color: #0b1020; }
+.altar-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+.tier-dot { display: inline-block; width: 10px; height: 10px; margin-right: 8px; transform: rotate(45deg); background: var(--tc); }
+.bonus { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.03em; }
+.stat-legend { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.stat-legend div { padding: 12px; background: rgba(5,10,22,0.4); box-shadow: inset 3px 0 0 var(--sc); }
+.stat-legend b { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 20px; text-transform: uppercase; color: var(--sc); display: block; }
+.stat-legend span { font-size: 14px; color: #b7c6e0; line-height: 1.4; display: block; }
+
+.tool { display: grid; grid-template-columns: minmax(0, 330px) minmax(0, 1fr); gap: 26px; align-items: start; }
+.form { display: grid; gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field label, .field .lbl { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.field input[type="number"], .field select {
+  width: 100%; font: 600 17px var(--body); color: var(--ice); background: rgba(5,10,22,0.6); border: 0; box-shadow: inset 0 0 0 1px var(--line), inset 0 -2px 0 var(--sky); padding: 9px 12px;
+}
+.field input[type="range"] { width: 100%; accent-color: var(--orange); }
+.range-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: 10px; align-items: center; }
+.range-row output { font-family: var(--display); font-weight: 800; font-size: 20px; text-align: right; }
+.check { display: flex; align-items: center; gap: 10px; font-size: 15px; color: #c3d1ea; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--orange); }
+.results { display: grid; gap: 16px; min-width: 0; }
+.readout { display: flex; flex-wrap: wrap; gap: 8px 28px; padding: 14px 18px; background: rgba(5,10,22,0.45); box-shadow: inset 3px 0 0 var(--orange); }
+.readout div { display: grid; }
+.readout b { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 30px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.readout span { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.note { font-size: 14px; color: var(--dim); }
+
+/* ---------------------------------------------------------------- bots */
+.bot-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.bot { display: grid; gap: 12px; }
+.bot h3 { font-size: 30px; }
+.bot .where { font-size: 14px; color: var(--muted); }
+.bot dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; }
+.bot dt { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.bot dd { margin: 0; font-family: var(--display); font-weight: 800; font-size: 22px; font-variant-numeric: tabular-nums; }
+.hp-bar { height: 6px; background: rgba(255,255,255,0.07); }
+.hp-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--damage), var(--orange)); }
+
+/* ---------------------------------------------------------------- updates */
+.patch { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; }
+.patch + .patch { border-top: 1px solid var(--line); padding-top: 22px; margin-top: 22px; }
+.patch-side { display: grid; gap: 6px; align-content: start; }
+.patch-side b { font-family: var(--display); font-style: italic; font-weight: 900; font-size: 44px; line-height: 0.9; color: var(--orange); }
+.patch h3 { font-size: 30px; margin-bottom: 10px; }
+.patch ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: #c3d1ea; }
+.patch li::marker { color: var(--orange); }
+
+/* ---------------------------------------------------------------- footer */
+footer { border-top: 1px solid var(--line); background: rgba(5,10,22,0.5); }
+.foot { max-width: 1240px; margin: 0 auto; padding: 32px 20px 40px; display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 1fr)); gap: 28px; font-size: 14px; color: var(--muted); }
+.foot b { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 17px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ice); display: block; margin-bottom: 8px; }
+.foot a { color: var(--muted); text-decoration: none; display: block; padding: 2px 0; }
+.foot a:hover { color: var(--orange); }
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width: 1020px) {
+  .hero-banner { grid-template-columns: minmax(0, 1fr); padding-top: 36px; }
+  .lineup { max-width: 620px; }
+  .hero-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .kit { grid-template-columns: minmax(0, 1fr); }
+  .bot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tool { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .topbar-in { gap: 12px; height: 58px; padding: 0 16px; }
+  .brand b { font-size: 22px; }
+  .brand b small { display: none; }
+  .play-mini { display: none; }
+  .wrap { padding-inline: 16px; }
+  .home-grid, .tips { grid-template-columns: minmax(0, 1fr); }
+  .quick { grid-template-columns: minmax(0, 1fr); }
+  .hero-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hero-detail { grid-template-columns: minmax(0, 1fr); }
+  .hd-portrait { max-width: 260px; }
+  .lineup { gap: 6px; padding-bottom: 22px; }
+  .lineup a:nth-child(3n+2) { transform: translateY(20px); }
+  .lineup a::after { font-size: 14px; bottom: 6px; }
+  .tier-row { grid-template-columns: 62px minmax(0, 1fr); }
+  .tier-label { font-size: 40px; }
+  .bot-grid { grid-template-columns: minmax(0, 1fr); }
+  .patch { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .foot { grid-template-columns: minmax(0, 1fr); }
+  .code-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .code-row .code-reward { grid-column: 1 / -1; grid-row: 2; }
+  .ladder td:first-child { width: auto; }
+}
+</style>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#home" aria-label="Hero Incremental home">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="#f99e1a" stroke-width="3"/>
+        <polygon points="13,11 18,11 17,18 23,18 24,11 29,11 26,29 21,29 22,22 16,22 15,29 10,29" fill="#eef4ff"/>
+      </svg>
+      <b>HERO <span>INCREMENTAL</span></b>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#home"><span>Home</span></a>
+      <a href="#codes"><span>Codes</span></a>
+      <a href="#heroes"><span>Heroes</span></a>
+      <a href="#tiers"><span>Tier List</span></a>
+      <a href="#ranks"><span>Ranks</span></a>
+      <a href="#runes"><span>Runes</span></a>
+      <a href="#tools"><span>Tools</span></a>
+      <a href="#bots"><span>Bots</span></a>
+      <a href="#updates"><span>Updates</span></a>
+    </nav>
+    <a class="btn btn-primary btn-sm play-mini" href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener"><span>Play</span></a>
+  </div>
+</header>
+
+<main>
+<!-- ============================================================ HOME -->
+<section id="page-home" class="wrap" data-page="home">
+  <div class="hero-banner">
+    <div class="hero-copy">
+      <div class="eyebrow">Roblox · Hero shooter × incremental</div>
+      <h1><span class="l1">Hero</span><span class="l2">Incremental</span></h1>
+      <p class="lede">Pick a hero, clear waves of training bots and watch the numbers climb. Rank from Bronze to Silver, storm a castle town, and roll runes that make every hit bigger.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener"><span>▶ Play on Roblox</span></a>
+        <a class="btn btn-ghost" href="#codes"><span>Active codes</span></a>
+      </div>
+      <div class="stat-strip" id="stat-strip"></div>
+    </div>
+    <div>
+      <div class="lineup" id="lineup"></div>
+    </div>
+  </div>
+
+  <div class="page" style="padding-top: 24px;">
+    <div class="home-grid">
+      <div class="panel">
+        <h2>Active codes</h2>
+        <div id="home-codes"></div>
+        <p class="note" style="margin-top: 12px;">Redeem in the Shop (press <b>X</b>) under Codes, or in Settings.</p>
+      </div>
+      <div class="panel" style="--accent: var(--sky);">
+        <h2>Controls</h2>
+        <div class="keys" id="keys"></div>
+      </div>
+      <div class="panel span2">
+        <h2>Jump to</h2>
+        <div class="quick">
+          <a href="#heroes"><img src="img/HeroToken.webp" alt=""><span><b>Heroes</b><small>All 12 heroes with weapons, abilities and ultimates.</small></span></a>
+          <a href="#tiers"><img src="img/Credits.webp" alt=""><span><b>Tier list</b><small>Which heroes farm Credits fastest.</small></span></a>
+          <a href="#ranks"><img src="img/Promotion.webp" alt=""><span><b>Ranks</b><small>Every rank's cost, multiplier and unlocks.</small></span></a>
+          <a href="#runes"><img src="img/Runes.webp" alt=""><span><b>Runes</b><small>All four altars with full odds tables.</small></span></a>
+          <a href="#tools"><img src="img/Ticket.webp" alt=""><span><b>Tools</b><small>Rune odds, rank-up and ticket planners.</small></span></a>
+          <a href="#bots"><img src="img/Turrets.webp" alt=""><span><b>Bots</b><small>Health, armor and payouts for every bot.</small></span></a>
+        </div>
+      </div>
+      <div class="panel span2" id="home-latest"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CODES -->
+<section id="page-codes" class="wrap page" data-page="codes" hidden>
+  <div class="page-head">
+    <div class="eyebrow">Free rewards</div>
+    <h1>Codes</h1>
+    <p class="lede">Every working code for Hero Incremental. Each one works once per account. Codes are posted with updates, so check back after each patch.</p>
+  </div>
+  <div class="panel">
+    <h2>Working codes</h2>
+    <div id="codes-list"></div>
+  </div>
+  <div class="home-grid">
+    <div class="panel" style="--accent: var(--sky);">
+      <h2>How to redeem</h2>
+      <ol class="lede" style="margin: 0; padding-left: 22px; display: grid; gap: 8px; font-size: 16px;">
+        <li>Join the game and press <kbd>X</kbd> to open the Shop.</li>
+        <li>Scroll to the <b>Codes</b> section at the bottom (or use the Codes tab at the top).</li>
+        <li>Type the code exactly as shown and press <b>Use</b>.</li>
+      </ol>
+      <p class="note" style="margin-top: 12px;">You can also redeem from the Settings menu (the gear icon, top right).</p>
+    </div>
+    <div class="panel" style="--accent: var(--dim);">
+      <h2>Expired codes</h2>
+      <p class="lede" style="font-size: 16px;">None yet. When a code expires it moves here, so you know not to bother trying it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ HEROES -->
+<section id="page-heroes" class="wrap page" data-page="heroes" hidden>
+  <div class="page-head">
+    <div class="eyebrow">Hero select</div>
+    <h1>Heroes</h1>
+    <p class="lede">Twelve heroes across three roles. You start with one, then earn a Hero Token every rank up and spend it on any hero you like.</p>
+  </div>
+  <div class="role-tabs" id="role-tabs"></div>
+  <div class="hero-grid" id="hero-grid"></div>
+  <div class="panel hero-detail" id="hero-detail"></div>
+</section>
+
+<!-- ============================================================ TIER LIST -->
+<section id="page-tiers" class="wrap page" data-page="tiers" hidden>
+  <div class="page-head">
+    <div class="eyebrow">Dev picks</div>
+    <h1>Farming tier list</h1>
+    <p class="lede">Which heroes earn Credits fastest once they're upgraded. Every hero can clear every zone; this ranks raw farming speed, not fun.</p>
+  </div>
+  <div id="tier-list"></div>
+</section>
+
+<!-- ============================================================ RANKS -->
+<section id="page-ranks" class="wrap page" data-page="ranks" hidden>
+  <div class="page-head">
+    <div class="eyebrow">Progression</div>
+    <h1>Ranks &amp; unlocks</h1>
+    <p class="lede">Ranking up costs Credits and raises your Credit multiplier. Almost every rank opens a new system, and every rank grants a Hero Token.</p>
+  </div>
+  <div class="panel">
+    <h2>Rank ladder</h2>
+    <div class="table-scroll">
+      <table class="ladder">
+        <thead><tr><th>Rank</th><th class="r">Cost</th><th class="r">Credit mult.</th><th>Unlocks</th></tr></thead>
+        <tbody id="ladder"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="panel" style="--accent: var(--sky);">
+    <h2>Progression tips</h2>
+    <div class="tips" id="tips"></div>
+  </div>
+</section>
+
+<!-- ============================================================ RUNES -->
+<section id="page-runes" class="wrap page" data-page="runes" hidden>
+  <div class="page-head">
+    <div class="eyebrow">Unlocks at Bronze 2</div>
+    <h1>Runes</h1>
+    <p class="lede">Stand on a rune altar and it rolls for you every second. Every tier you own gives a permanent bonus that grows with your count until it hits [MAX]. Runes never reset.</p>
+  </div>
+  <div class="stat-legend" id="stat-legend"></div>
+  <div class="panel" id="altar-panel">
+    <div class="seg" id="altar-tabs"></div>
+    <div id="altar-body"></div>
+  </div>
+</section>
+
+<!-- ============================================================ TOOLS -->
+<section id="page-tools" class="wrap page" data-page="tools" hidden>
+  <div class="page-head">
+    <div class="eyebrow">Calculators</div>
+    <h1>Tools</h1>
+    <p class="lede">Plug in your numbers to plan rune farming, rank ups and ticket spending. They use the same formulas as the game.</p>
+  </div>
+
+  <div class="panel tool" id="tool-runes">
+    <div class="form">
+      <h2 style="margin: 0;">Rune odds</h2>
+      <div class="field"><label for="ro-altar">Altar</label><select id="ro-altar"></select></div>
+      <div class="field"><span class="lbl">Luck</span>
+        <label class="check"><input type="checkbox" id="ro-pass-luck"> Rune Luck pass (×1.5)</label>
+        <label class="check"><input type="checkbox" id="ro-pot-luck"> Luck Potion active (×2)</label>
+      </div>
+      <div class="field"><label for="ro-shop-luck">"More Luck" boost level</label><div class="range-row"><input type="range" id="ro-shop-luck" min="0" max="10" value="3"><output id="ro-shop-luck-o">3</output></div></div>
+      <div class="field"><label for="ro-attune">Rune Attunement (Cargo Bay)</label><div class="range-row"><input type="range" id="ro-attune" min="0" max="3" value="1"><output id="ro-attune-o">1</output></div></div>
+      <div class="field"><label for="ro-tierluck">Luck from owned runes (×)</label><input type="number" id="ro-tierluck" min="1" step="0.05" value="1.2"></div>
+      <div class="field"><span class="lbl">Rolling</span>
+        <label class="check"><input type="checkbox" id="ro-pass-speed"> Rune Speed pass (×1.5)</label>
+        <label class="check"><input type="checkbox" id="ro-pass-bulk"> Rune Bulk pass (×1.5)</label>
+        <label class="check"><input type="checkbox" id="ro-pass-clone"> Rune Clone pass (+1)</label>
+      </div>
+      <div class="field"><label for="ro-shop-speed">"More Speed" boost level</label><div class="range-row"><input type="range" id="ro-shop-speed" min="0" max="10" value="2"><output id="ro-shop-speed-o">2</output></div></div>
+    </div>
+    <div class="results">
+      <div class="readout" id="ro-readout"></div>
+      <div class="table-scroll"><table><thead><tr><th>Tier</th><th class="r">Base odds</th><th class="r">Your odds</th><th class="r">First pull in</th><th class="r">Per hour</th><th class="r">[MAX] in</th></tr></thead><tbody id="ro-table"></tbody></table></div>
+      <p class="note">Example build shown. Times are averages: rare tiers can land much sooner or later. "Luck from owned runes" is the Luck bonus on your Runes menu stats line.</p>
+    </div>
+  </div>
+
+  <div class="panel tool" id="tool-rank" style="--accent: var(--sky);">
+    <div class="form">
+      <h2 style="margin: 0;">Rank-up planner</h2>
+      <div class="field"><label for="rk-rank">Current rank</label><select id="rk-rank"></select></div>
+      <div class="field"><label for="rk-credits">Credits you have</label><input type="number" id="rk-credits" min="0" step="1000" value="120000"></div>
+      <div class="field"><label for="rk-income">Credits per minute</label><input type="number" id="rk-income" min="1" step="1000" value="45000"></div>
+    </div>
+    <div class="results">
+      <div class="readout" id="rk-readout"></div>
+      <div class="table-scroll"><table><thead><tr><th>Next rank</th><th class="r">Cost</th><th class="r">Still needed</th><th class="r">Time at this income</th></tr></thead><tbody id="rk-table"></tbody></table></div>
+      <p class="note">Example numbers shown. Your income jumps after every rank up (higher Credit multiplier), so later ranks arrive sooner than this estimate.</p>
+    </div>
+  </div>
+
+  <div class="panel tool" id="tool-tickets" style="--accent: var(--warn);">
+    <div class="form">
+      <h2 style="margin: 0;">Ticket planner</h2>
+      <div class="field"><label for="tk-hours">Hours played per day</label><div class="range-row"><input type="range" id="tk-hours" min="0.5" max="8" step="0.5" value="2"><output id="tk-hours-o">2</output></div></div>
+      <div class="field"><label for="tk-have">Tickets you have</label><input type="number" id="tk-have" min="0" value="40"></div>
+      <div class="field"><label for="tk-boost">Plan for</label><select id="tk-boost"></select></div>
+    </div>
+    <div class="results">
+      <div class="readout" id="tk-readout"></div>
+      <div class="table-scroll"><table><thead><tr><th>Level</th><th class="r">Ticket cost</th><th class="r">Running total</th><th class="r">Bonus</th><th class="r">Ready in</th></tr></thead><tbody id="tk-table"></tbody></table></div>
+      <p class="note">You earn 1 Ticket for every 5 minutes in the game (nothing while offline). Potion packs cost 20 Tickets for 10 potions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ BOTS -->
+<section id="page-bots" class="wrap page" data-page="bots" hidden>
+  <div class="page-head">
+    <div class="eyebrow">Enemy database</div>
+    <h1>Bots</h1>
+    <p class="lede">Every bot type, where it spawns and what it pays. Credits listed are base payouts: your rank's Credit multiplier and every upgrade stack on top.</p>
+  </div>
+  <div class="bot-grid" id="bot-grid"></div>
+</section>
+
+<!-- ============================================================ UPDATES -->
+<section id="page-updates" class="wrap page" data-page="updates" hidden>
+  <div class="page-head">
+    <div class="eyebrow">Patch notes</div>
+    <h1>Updates</h1>
+    <p class="lede">What changed in each build, newest first.</p>
+  </div>
+  <div class="panel" id="patches"></div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <div>
+      <b>Hero Incremental</b>
+      <p>A Roblox hero shooter incremental by gaurd21. Not affiliated with or endorsed by Roblox Corporation.</p>
+    </div>
+    <div>
+      <b>Game</b>
+      <a href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener">Play on Roblox</a>
+      <a href="#codes">Codes</a>
+      <a href="#updates">Patch notes</a>
+    </div>
+    <div>
+      <b>Guides</b>
+      <a href="#heroes">Heroes</a>
+      <a href="#tiers">Tier list</a>
+      <a href="#ranks">Ranks &amp; unlocks</a>
+      <a href="#tools">Calculators</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+"use strict";
+
+// ================================================================= game data (from the live game config)
+var HEROES = [
+  { id: "Bulwark", role: "Tank", c: "#ffc83c", tag: "Walking fortress", desc: "Heavy armor, a crushing energy hammer, and a barrier that shrugs off anything the bots throw.",
+    weapon: { name: "Breaker Hammer", blurb: "Slow, crushing melee swings that cleave every bot in front of you.", perk: "3.4× damage, ignores Armored bot armor, 14-stud reach.", stats: ["3.4× dmg", "0.42× rate", "14 reach", "Melee"] },
+    ability: { name: "Barrier", icon: "Ability_Barrier", cd: 14, blurb: "Project a shield: take 75% less damage for 6s." },
+    ult: { name: "Seismic Slam", icon: "Ult_SeismicSlam", blurb: "Slam the ground: a shockwave hits every bot in front of you and stuns them." } },
+  { id: "Anchor", role: "Tank", c: "#46e6d2", tag: "Siege diver", desc: "A deep-sea salvage diver in pressure armor. Drags bots into reach, holds the line, and makes the siege robot roll faster.",
+    weapon: { name: "Tidebreaker", blurb: "A heavy chain whip with an anchor hook on the end. Lashes out further than any other melee.", perk: "2.6× damage, 26-stud lash.", stats: ["2.6× dmg", "0.45× rate", "26 reach", "Whip"] },
+    ability: { name: "Tether", icon: "Ability_Tether", cd: 9, blurb: "Hook the bot you're facing, drag it to you and stun it for 1.5s." },
+    ult: { name: "Undertow", icon: "Ult_Undertow", blurb: "Open a whirlpool where you aim: it drags every bot in and holds them there, crushing them for 4s." } },
+  { id: "Vanguard", role: "Damage", c: "#5ac8ff", tag: "Frontline rifleman", desc: "A disciplined all-rounder with a reliable pulse carbine. Easy to pick up, never out of place.",
+    weapon: { name: "Pulse Carbine", blurb: "Balanced full-auto rifle.", perk: "Reliable at every range.", stats: ["1× dmg", "1× rate", "Full auto"] },
+    ability: { name: "Overdrive", icon: "Ability_Overdrive", cd: 16, blurb: "+50% fire rate and instant reload for 5s." },
+    ult: { name: "Strike Beacon", icon: "Ult_StrikeBeacon", blurb: "Call an orbital strike where you aim: huge damage to every bot in the blast." } },
+  { id: "Flicker", role: "Damage", c: "#ffbe50", tag: "Time-skipping skirmisher", desc: "Blinks through space and hoses targets with twin rapid-fire pistols. Never stops moving.",
+    weapon: { name: "Burner SMG", blurb: "Very fast fire, big magazine, low damage per shot.", perk: "0.55× damage, 1.9× fire rate.", stats: ["0.55× dmg", "1.9× rate", "40 mag"] },
+    ability: { name: "Blink", icon: "Ability_Blink", cd: 3, blurb: "Dash 18 studs in the direction you're moving. 3 charges." },
+    ult: { name: "Time Surge", icon: "Ult_TimeSurge", blurb: "For 6s: triple fire rate, bottomless magazine and +40% move speed." } },
+  { id: "Havoc", role: "Damage", c: "#ff3c46", tag: "Close-range executioner", desc: "A hooded brawler with a scattergun that shreds anything in arm's reach.",
+    weapon: { name: "Reaper Scattergun", blurb: "8 pellets per shot. The closer you are, the harder it hits.", perk: "Full damage within 8 studs, +25% point blank, 35% at 30+.", stats: ["8 pellets", "0.6× rate", "8 mag"] },
+    ability: { name: "Wraith Form", icon: "Ability_Wraith", cd: 12, blurb: "Become invulnerable and 50% faster for 2.5s." },
+    ult: { name: "Death Spiral", icon: "Ult_DeathSpiral", blurb: "Spin for 3s, shredding every bot around you. Take 50% less damage while spinning." } },
+  { id: "Longshot", role: "Damage", c: "#dc82ff", tag: "Precision marksman", desc: "Patient, lethal, and always aiming for the head. Every shot is a big number.",
+    weapon: { name: "Longbow Rail", blurb: "Slow, pinpoint shots. Crits deal 3×.", perk: "Up to +50% damage on targets 40+ studs away.", stats: ["1.9× dmg", "0.45× rate", "3× crits"] },
+    ability: { name: "Deadeye", icon: "Ability_Deadeye", cd: 14, blurb: "Your next 5 hits are guaranteed critical hits." },
+    ult: { name: "Lockdown", icon: "Ult_Lockdown", blurb: "Lock on to every bot in sight, then fire: massive damage to each one." } },
+  { id: "Kestrel", role: "Damage", c: "#ffb43c", tag: "Sky hunter", desc: "A falconer of the high ramparts. Grapples onto anything, fires bolts that burst, and drops out of the sky.",
+    weapon: { name: "Talon Crossbows", blurb: "Heavy bolts that stick in and burst after a moment, hitting everything nearby.", perk: "Bolts explode after 0.6s for 50% splash.", stats: ["1.25× dmg", "0.75× rate", "Splash"] },
+    ability: { name: "Grapple Line", icon: "Ability_Grapple", cd: 7, blurb: "Fire a line at any surface you aim at and zip to it." },
+    ult: { name: "Talon Dive", icon: "Ult_TalonDive", blurb: "Leap high into the air, then slam down: huge damage to every bot where you land." } },
+  { id: "Ember", role: "Damage", c: "#ff8228", tag: "Pyro specialist", desc: "Carries the fire everywhere she goes. Everything she touches keeps burning after she's moved on.",
+    weapon: { name: "Cinder Projector", blurb: "A short-range stream of fire. Bots keep burning after you stop.", perk: "Hits set bots burning for +35% damage over time.", stats: ["4× rate", "24 reach", "Burn"] },
+    ability: { name: "Firebreak", icon: "Ability_Firebreak", cd: 12, blurb: "Throw down a patch of fire in front of you. Bots walking through it burn." },
+    ult: { name: "Inferno", icon: "Ult_Inferno", blurb: "Blast a huge cone of fire for 3s: every bot caught takes heavy damage, panics and burns." } },
+  { id: "Rivet", role: "Damage", c: "#50beff", tag: "Combat engineer", desc: "Builds what the fight needs. Nails that ricochet, a sentry in every pocket, and turrets that never sleep.",
+    weapon: { name: "Nail Driver", blurb: "A rapid nail gun. Every nail ricochets into another bot nearby.", perk: "Hits bounce to a second bot for 40%.", stats: ["1.05× dmg", "0.85× rate", "Ricochet"] },
+    ability: { name: "Pocket Sentry", icon: "Ability_Sentry", cd: 18, blurb: "Drop a mini-turret that shoots the nearest bot for 12s." },
+    ult: { name: "Overclock Field", icon: "Ult_OverclockField", blurb: "For 10s your turrets fire 3× faster, you fire 50% faster, and a free Pocket Sentry drops." } },
+  { id: "Broker", role: "Damage", c: "#ffcd50", tag: "War profiteer", desc: "Every bot has a price. Marks the valuable targets, takes a cut of every kill, and turns a fight into a payday.",
+    weapon: { name: "Appraiser", blurb: "A precise revolver: slow, heavy shots with big crits.", perk: "Crits deal 2.5×.", stats: ["1.5× dmg", "0.55× rate", "2.5× crits"] },
+    ability: { name: "Mark Asset", icon: "Ability_Mark", cd: 10, blurb: "Mark the bot you're facing: for 10s it pays 3× Credits and 3× Scrap when it dies." },
+    ult: { name: "Jackpot", icon: "Ult_Jackpot", blurb: "For 8s every kill pays 3× Credits, and you fire 25% faster." } },
+  { id: "Solace", role: "Support", c: "#fff0aa", tag: "Battlefield medic", desc: "A haloed field medic who outlasts everything. Nothing keeps her down for long.",
+    weapon: { name: "Seraph Caster", blurb: "Accurate semi-rapid bolts that mend you.", perk: "Every hit heals you 3 HP.", stats: ["0.95× dmg", "1.05× rate", "Lifesteal"] },
+    ability: { name: "Renew", icon: "Ability_Renew", cd: 12, blurb: "Heal 80 HP over 2s and move 30% faster." },
+    ult: { name: "Sanctuary", icon: "Ult_Sanctuary", blurb: "For 10s: you're invulnerable, and you and nearby allies deal 2× damage and earn 2× Credits." } },
+  { id: "Vesper", role: "Support", c: "#be78ff", tag: "Bio-alchemist", desc: "A rogue alchemist who drinks the fight. Her siphon drains bots to keep her alive, and her orbs keep the squad going.",
+    weapon: { name: "Siphon Gauntlet", blurb: "A short-range draining stream that locks on easily and heals you as it hits.", perk: "Never reloads. Every hit heals you 1.2 HP.", stats: ["5× rate", "26 reach", "No reload"] },
+    ability: { name: "Bloom Orb", icon: "Ability_Bloom", cd: 10, blurb: "Throw an orb that bounces around for 6s, draining bots it passes and healing you and allies nearby." },
+    ult: { name: "Confluence", icon: "Ult_Confluence", blurb: "For 7s project a long siphon beam that pierces every bot in a line and heals you as it drains." } }
+];
+var ROLE_COLOR = { Tank: "var(--tank)", Damage: "var(--damage)", Support: "var(--support)" };
+
+var CODES = [
+  { code: "LAUNCH", reward: "+50 Cargo and 20 minutes of 2× Credits", req: "Anyone" },
+  { code: "STURMFESTE", reward: "+40 Crowns and 15 minutes of 2× Credits", req: "Silver rank" },
+  { code: "THANKYOU", reward: "+1 Hero Token", req: "Anyone", expires: "2026-12-31" }
+];
+
+var KEYS = [["Q", "Ultimate"], ["E", "Ability"], ["F", "Upgrades"], ["X", "Shop"], ["C", "Cargo Bay"], ["Y", "Runes"], ["T", "Fast travel"], ["M", "Mobility tree"], ["L", "Research Lab"], ["K", "Trials"], ["G", "Grapple"], ["Ctrl", "Dash"]];
+
+var RANKS = [
+  { name: "Unranked", cost: 0, mult: 1, a: "#5a606a", b: "#bec6d0" },
+  { name: "Bronze 5", cost: 2500, mult: 3, a: "#6e3e20", b: "#e09e5c" },
+  { name: "Bronze 4", cost: 20000, mult: 5, a: "#6e3e20", b: "#e09e5c" },
+  { name: "Bronze 3", cost: 710000, mult: 9, a: "#6e3e20", b: "#e09e5c" },
+  { name: "Bronze 2", cost: 330e6, mult: 14, a: "#6e3e20", b: "#e09e5c" },
+  { name: "Bronze 1", cost: 980e6, mult: 20, a: "#6e3e20", b: "#e09e5c" },
+  { name: "Silver 5", cost: 3e9, mult: 40, a: "#8c919b", b: "#ebf0f5" },
+  { name: "Silver 4", cost: 9e9, mult: 60, a: "#8c919b", b: "#ebf0f5" },
+  { name: "Silver 3", cost: 20e9, mult: 90, a: "#8c919b", b: "#ebf0f5" },
+  { name: "Silver 2", cost: 40e9, mult: 135, a: "#8c919b", b: "#ebf0f5" },
+  { name: "Silver 1", cost: 90e9, mult: 200, a: "#8c919b", b: "#ebf0f5" }
+];
+var SYSTEMS = {
+  OnFire: { t: "On Fire", icon: "OnFire", b: "Chain kills without getting hit to build heat. Heat multiplies kill Credits up to 2.5×." },
+  Ultimate: { t: "Ultimates", icon: "Ultimate", b: "Damage and kills charge your hero's ultimate. Press Q when it's ready." },
+  Redeploy: { t: "Redeploy", icon: "Redeploy", b: "Cash in Credits for permanent Redeploy points and Rank XP." },
+  CargoBay: { t: "Cargo Bay", icon: "Cargo", b: "Cargo never resets. Spend it (C) on permanent upgrades that boost everything." },
+  Payload: { t: "Payload", icon: "Payload", b: "Escort the payload through the Main Hall. Checkpoints pay Cargo, Credits and Rank XP." },
+  Turrets: { t: "Turrets", icon: "Turrets", b: "Bots drop Scrap. Build turrets at the glowing sockets to fight alongside you." },
+  Mastery: { t: "Hero Mastery", icon: "Mastery", b: "Kills level up the hero you play. Pick a minor perk at level 2 and a major perk at level 3." },
+  Bounties: { t: "Bounties", icon: "Marks", b: "WANTED bots appear every few minutes. Take them down for Bounty Marks." },
+  Control: { t: "Control Point", icon: "CP", b: "Capture the active point for Competitive Points. The point moves after each capture." },
+  Runes: { t: "Runes", icon: "Runes", b: "Stand on an altar in the Armory to roll. Every tier you collect boosts you forever." },
+  Promotion: { t: "Tier Promotion", icon: "Promotion", b: "Promote to Silver: reset your Redeploy progress for Skill Rating and a new ladder." },
+  Sturmfeste: { t: "Sturmfeste", icon: "Sturmfeste", b: "A storm-lashed castle town whose Sentinels, Knights and Wardens pay far more." },
+  Push: { t: "Siege Push", icon: "Crowns", b: "Escort the siege robot to the throne. Checkpoints pay Crowns; your best distance is a permanent Credits boost." },
+  Mobility: { t: "Mobility", icon: "Momentum", b: "Parkour runs pay Momentum. Spend it on double jump, dash, wall-run and the grapple hook." },
+  Research: { t: "Research Lab", icon: "Crowns", b: "Spend Crowns on permanent research. The timers keep running while you're offline." },
+  Trials: { t: "Trials", icon: "SR", b: "Challenge runs at the Tourney Yard. Beat the handicap for permanent rewards and automation." }
+};
+var UNLOCKS = { 0: ["OnFire", "Ultimate"], 1: ["Redeploy", "CargoBay"], 2: ["Payload"], 3: ["Turrets", "Mastery", "Bounties"], 4: ["Control", "Runes"], 5: ["Promotion"], 6: ["Sturmfeste", "Push"], 7: ["Mobility"], 8: ["Research"], 9: ["Trials"] };
+
+var TIPS = [
+  ["Redeploy", "Redeploy early and often", "Redeploy points never reset between runs. The first few Redeploys pay back fastest, so don't sit on a big pile of Credits."],
+  ["Cargo", "Cargo Bay first", "Cargo upgrades are permanent and boost every run. Spend Cargo as soon as you have it."],
+  ["OnFire", "Stay On Fire", "Chaining kills without taking a hit builds heat up to 2.5× Credits. Healers and tanks keep the streak alive longest."],
+  ["Runes", "Park on an altar", "Runes only roll while you stand on an altar (or anywhere with Auto Rune). Idle on one while you plan upgrades."],
+  ["Ticket", "Tickets reward playtime", "You get 1 Ticket every 5 minutes in game. Spend them on permanent Boosts before potions."],
+  ["Crowns", "Start research before you log off", "Research Lab timers keep running while you're offline, so queue the longest project last."],
+  ["Marks", "Bounty Marks are permanent", "Marks and Competitive Points, and everything you buy with them, never reset."],
+  ["HeroToken", "Every rank is a new hero", "Each rank up gives a Hero Token. Try every role: a tank changes how the Payload and Push play."]
+];
+
+var RUNE_STATS = {
+  Credits: ["Credits", "#5ac8ff"], Damage: ["Damage", "#ff6e5a"], Redeploy: ["Redeploy", "#ffb741"], Cargo: ["Cargo", "#78e696"], Salvage: ["Scrap", "#5ae6e6"],
+  Crowns: ["Crowns", "#ffcd50"], Momentum: ["Momentum", "#6ee6f0"], RuneLuck: ["Luck", "#6ee678"], RuneBulk: ["Bulk", "#5aaaff"], RuneSpeed: ["Speed", "#ffc846"]
+};
+var ALTARS = [
+  { id: "Valor", name: "Rune of Valor", color: "#aa6eff", where: "Armory (behind the Training Hub)", unlock: "Bronze 2", cost: "25 Redeploy",
+    tiers: [["Spark", 1, { Credits: 1.25 }, 10000], ["Glimmer", 4, { Damage: 1.25, RuneLuck: 1.2 }, 5000], ["Pulse", 25, { Credits: 1.5, RuneSpeed: 1.3 }, 2000], ["Surge", 150, { Damage: 1.5, Redeploy: 1.25 }, 500],
+      ["Overdrive", 1000, { Credits: 2, RuneLuck: 1.5 }, 150], ["Apex", 10000, { Damage: 2, Redeploy: 1.5 }, 40], ["Mythic", 150000, { Credits: 3, RuneBulk: 2 }, 8], ["Transcendent", 3000000, { Credits: 5, Damage: 3 }, 2]] },
+  { id: "Fortune", name: "Rune of Fortune", color: "#ffc446", where: "Armory (behind the Training Hub)", unlock: "Bronze 1", cost: "250 Redeploy",
+    tiers: [["Copper", 1, { Redeploy: 1.25 }, 10000], ["Silver", 5, { Cargo: 1.25, RuneBulk: 1.2 }, 4000], ["Gilded", 30, { Redeploy: 1.5 }, 1500], ["Jewel", 200, { Salvage: 1.5, RuneSpeed: 1.25 }, 400],
+      ["Royal", 1500, { Redeploy: 2, Cargo: 1.5 }, 120], ["Treasure", 20000, { Credits: 2, RuneLuck: 1.5 }, 30], ["Hoard", 300000, { Redeploy: 3, RuneBulk: 2 }, 6], ["Midas", 5000000, { Credits: 5, Redeploy: 5 }, 2]] },
+  { id: "Tempest", name: "Rune of the Tempest", color: "#5ac8ff", where: "Sturmhorn Tavern (Sturmfeste)", unlock: "Silver 5", cost: "300 Crowns",
+    tiers: [["Drizzle", 1, { Crowns: 1.25 }, 10000], ["Gale", 6, { Momentum: 1.25 }, 4000], ["Thunder", 40, { Crowns: 1.5, RuneSpeed: 1.25 }, 1500], ["Cyclone", 300, { Damage: 1.5, Momentum: 1.5 }, 400],
+      ["Maelstrom", 2500, { Crowns: 2, RuneLuck: 1.5 }, 100], ["Stormeye", 40000, { Credits: 2, Damage: 2 }, 25], ["Stormborn", 600000, { Crowns: 3, RuneBulk: 2 }, 5], ["Tempest King", 10000000, { Credits: 5, Crowns: 5 }, 2]] },
+  { id: "Unity", name: "Rune of Unity", color: "#ff7850", where: "Global: bought in the Shop", unlock: "Anyone", cost: "Robux", global: true,
+    tiers: [["Recruit", 89, { Credits: 1.25 }, 1000], ["Ally", 10, { RuneLuck: 1.5 }, 200], ["Comrade", 0.89, { Credits: 2, Redeploy: 1.5 }, 30], ["Champion", 0.1, { Damage: 2, RuneBulk: 1.5 }, 5], ["Legend", 0.01, { Credits: 3, Damage: 3, Redeploy: 3 }, 1]] }
+];
+var TIER_COLORS = ["#c8d0dc", "#6ee678", "#5aaaff", "#b478ff", "#ff78c8", "#ffc446", "#ff8a3c", "#ff4a5a"];
+
+var BOTS = [
+  { id: "Training", name: "Training Drone", zone: "Main Hall", rank: "Unranked", hp: 100, armor: 0, dmg: 3, credits: 10, respawn: 4 },
+  { id: "Armored", name: "Armored Mech", zone: "Advanced Combat", rank: "Bronze 3", hp: 1000, armor: 0.10, dmg: 15, credits: 100, respawn: 8, note: "Tank melee ignores its armor." },
+  { id: "Elite", name: "Elite Android", zone: "Elite Combat", rank: "Bronze 1", hp: 10000, armor: 0.25, dmg: 5, credits: 1500, respawn: 16 },
+  { id: "Sentinel", name: "Sentinel", zone: "Sturmfeste Village", rank: "Silver 5", hp: 25000, armor: 0.15, dmg: 8, credits: 12000, respawn: 6 },
+  { id: "Knight", name: "Knight", zone: "Castle Grounds", rank: "Silver 4", hp: 90000, armor: 0.25, dmg: 18, credits: 60000, respawn: 10 },
+  { id: "Warden", name: "Warden", zone: "The Keep", rank: "Silver 2", hp: 400000, armor: 0.35, dmg: 12, credits: 350000, respawn: 20 }
+];
+
+var TIERS = [
+  { t: "S", c: "#ff4a5a", heroes: [
+    ["Broker", "Jackpot triples kill Credits for 8s, and Mark Asset turns any tough bot into a 3× payout."],
+    ["Solace", "Sanctuary doubles damage and Credits for the whole squad, and lifesteal keeps her On Fire."],
+    ["Rivet", "Ricocheting nails hit two bots at once, and Overclock Field triples your turrets' fire rate."]] },
+  { t: "A", c: "#f99e1a", heroes: [
+    ["Ember", "Burn keeps ticking on every bot she touches. Inferno clears whole packs."],
+    ["Vesper", "Never reloads and heals on every hit. Confluence pierces a whole line of bots."],
+    ["Longshot", "Lockdown hits every bot in sight for 12×. Best against tanky Silver bots."],
+    ["Bulwark", "Seven-ray cleave ignores Armored bot armor. Unkillable behind Barrier."]] },
+  { t: "B", c: "#ffcf5a", heroes: [
+    ["Kestrel", "Splash bolts are strong on groups, and the grapple reaches parkour shortcuts."],
+    ["Vanguard", "Solid everywhere. Strike Beacon's 14× blast is great for packed spawns."],
+    ["Anchor", "Undertow groups bots for your team, and the 26-stud whip is the longest melee."],
+    ["Havoc", "Huge point-blank damage, but you need to get close to every bot."]] },
+  { t: "C", c: "#5ac8ff", heroes: [
+    ["Flicker", "Fun and fast, but 0.55× damage per shot falls off once bots get armor."]] }
+];
+
+var PATCHES = [
+  { tag: "Runes", title: "Runes, Armory & Shop", items: [
+    "New Armory room behind the Training Hub with the Rune of Valor and Rune of Fortune altars.",
+    "Runes rebuilt: stand on an altar to roll. Every tier grows a permanent bonus up to [MAX].",
+    "Rune of the Tempest altar in the Sturmhorn Tavern. Global Runes give every player in the server free rolls.",
+    "New Shop with Tickets (1 every 5 minutes you play), permanent Boosts, potions, bundles and codes.",
+    "Bounty Marks, Competitive Points and their upgrades are now permanent.",
+    "Roblox Premium members get +10% on every currency.",
+    "The Control Point is now a ring on the ground that fills as you capture."] },
+  { tag: "Polish", title: "Grapple & feel pass", items: [
+    "Grapple now lands you on top of perches instead of flinging you off them.",
+    "Bot shots now come out of their weapons and hands.",
+    "Capture ring reads upright from any angle."] },
+  { tag: "Roster", title: "Twelve heroes", items: [
+    "Six new heroes: Anchor, Kestrel, Ember, Rivet, Broker and Vesper.",
+    "Free choice: every rank up grants a Hero Token for any hero.",
+    "First-person arms now match your hero's model."] },
+  { tag: "Silver", title: "Sturmfeste", items: [
+    "Silver ranks unlock Sturmfeste, a storm-lashed castle town with Sentinels, Knights and Wardens.",
+    "Siege Push, the Mobility tree with parkour courses, the Research Lab and Trials.",
+    "Fast travel (T) and in-game feedback."] }
+];
+
+// ================================================================= helpers
+function $(s, r) { return (r || document).querySelector(s); }
+function el(html) { var t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
+function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+function fmt(n) {
+  if (!isFinite(n)) return "∞";
+  var u = ["", "K", "M", "B", "T", "Qa"], i = 0;
+  while (Math.abs(n) >= 1000 && i < u.length - 1) { n /= 1000; i++; }
+  if (i === 0) return (Math.round(n * 100) / 100).toLocaleString("en-US");
+  return (n >= 100 ? n.toFixed(0) : n >= 10 ? n.toFixed(1) : n.toFixed(2)).replace(/\.?0+$/, "") + u[i];
+}
+function dur(sec) {
+  if (!isFinite(sec) || sec > 3.15e9) return "Never";
+  if (sec < 1) return "< 1s";
+  if (sec < 60) return Math.round(sec) + "s";
+  if (sec < 3600) return Math.round(sec / 60) + " min";
+  if (sec < 86400) return (sec / 3600).toFixed(sec < 36000 ? 1 : 0).replace(/\.0$/, "") + " h";
+  if (sec < 86400 * 365) return (sec / 86400).toFixed(sec < 864000 ? 1 : 0).replace(/\.0$/, "") + " days";
+  return (sec / 86400 / 365).toFixed(1) + " years";
+}
+function img(name) { return "img/" + name + ".webp"; }
+function hero(id) { for (var i = 0; i < HEROES.length; i++) if (HEROES[i].id === id) return HEROES[i]; }
+function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+function copyButton(code) {
+  var b = el('<button class="copy" type="button" aria-label="Copy code ' + code + '"><span>COPY</span></button>');
+  b.addEventListener("click", function () {
+    var done = function () { b.classList.add("done"); b.firstChild.textContent = "COPIED"; setTimeout(function () { b.classList.remove("done"); b.firstChild.textContent = "COPY"; }, 1600); };
+    var fallback = function () {
+      var r = document.createRange(), t = b.parentNode.querySelector(".code-tag");
+      r.selectNodeContents(t); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      b.firstChild.textContent = "SELECTED";
+      setTimeout(function () { b.firstChild.textContent = "COPY"; }, 1600);
+    };
+    try { navigator.clipboard.writeText(code).then(done, fallback); } catch (e) { fallback(); }
+  });
+  return b;
+}
+function codeRow(c) {
+  var row = el('<div class="code-row"><div class="code-tag">' + c.code + '</div><div class="code-reward">' + esc(c.reward) +
+    '<small>' + esc(c.req) + (c.expires ? " · expires " + c.expires : " · no expiry") + '</small></div></div>');
+  row.appendChild(copyButton(c.code));
+  return row;
+}
+
+// ================================================================= home
+(function home() {
+  var strip = $("#stat-strip");
+  [[HEROES.length, "Heroes"], [RANKS.length - 1, "Ranks"], [Object.keys(SYSTEMS).length, "Systems"], [ALTARS.length, "Rune altars"]].forEach(function (s) {
+    strip.appendChild(el('<div><b>' + s[0] + '</b><span>' + s[1] + '</span></div>'));
+  });
+  var line = $("#lineup");
+  ["Bulwark", "Ember", "Vanguard", "Longshot", "Broker", "Solace"].forEach(function (id) {
+    var h = hero(id);
+    line.appendChild(el('<a href="#heroes" data-hero="' + id + '" data-name="' + id.toUpperCase() + '" style="--c:' + h.c + '"><img src="' + img("Hero_" + id) + '" alt="' + id + '"></a>'));
+  });
+  line.appendChild(el('<div class="lineup-glow" aria-hidden="true"></div>'));
+  line.addEventListener("click", function (e) { var a = e.target.closest("a[data-hero]"); if (a) selectHero(a.dataset.hero); });
+  var hc = $("#home-codes");
+  CODES.forEach(function (c) { hc.appendChild(codeRow(c)); });
+  var keys = $("#keys");
+  KEYS.forEach(function (k) { keys.appendChild(el('<div class="key"><kbd>' + k[0] + '</kbd>' + k[1] + '</div>')); });
+  var p = PATCHES[0];
+  $("#home-latest").appendChild(el('<div><h2>Latest update: ' + esc(p.title) + '</h2><ul class="lede" style="margin:0;padding-left:20px;display:grid;gap:6px;font-size:16px;">' +
+    p.items.slice(0, 4).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + '</ul><p style="margin-top:14px;"><a class="btn btn-ghost btn-sm" href="#updates"><span>All patch notes</span></a></p></div>'));
+})();
+
+// ================================================================= codes
+(function codes() {
+  var list = $("#codes-list");
+  CODES.forEach(function (c) {
+    var r = codeRow(c);
+    r.querySelector(".code-reward").insertAdjacentHTML("beforeend", ' <span class="chip pill-active" style="margin-top:6px;"><span>Active</span></span>');
+    list.appendChild(r);
+  });
+})();
+
+// ================================================================= heroes
+var roleFilter = "All", selected = store("hi-hero") || "Solace";
+function renderHeroGrid() {
+  var grid = $("#hero-grid");
+  grid.innerHTML = "";
+  HEROES.forEach(function (h) {
+    if (roleFilter !== "All" && h.role !== roleFilter) return;
+    var t = el('<button class="hero-tile" type="button" aria-pressed="' + (h.id === selected) + '" style="--c:' + h.c + '" aria-label="' + h.id + ', ' + h.role + '">' +
+      '<img src="' + img("Hero_" + h.id) + '" alt=""><img class="role-ic" src="' + img("Role_" + h.role) + '" alt=""><span class="name">' + h.id.toUpperCase() + '</span></button>');
+    t.addEventListener("click", function () { selectHero(h.id, true); });
+    grid.appendChild(t);
+  });
+}
+var WEAPON_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0b1020" d="M2 10h13l2-2h5v4h-3l-1 2h-3l-1 5H9l1-5H2z"/></svg>';
+function renderHeroDetail() {
+  var h = hero(selected), d = $("#hero-detail");
+  d.style.setProperty("--c", h.c);
+  d.innerHTML =
+    '<div class="hd-portrait"><img src="' + img("Hero_" + h.id) + '" alt="' + h.id + ' portrait"></div>' +
+    '<div class="hd-body">' +
+      '<div class="hd-name"><h2>' + h.id + '</h2><span class="chip" style="color:' + ROLE_COLOR[h.role] + '"><span><img src="' + img("Role_" + h.role) + '" alt="">' + h.role + '</span></span></div>' +
+      '<div class="hd-tag">' + esc(h.tag) + '</div>' +
+      '<p class="hd-desc">' + esc(h.desc) + '</p>' +
+      '<div class="kit">' +
+        '<div class="kit-card"><header><div class="kit-weapon-icon">' + WEAPON_SVG + '</div><div><span class="slot">Weapon</span><h4>' + esc(h.weapon.name) + '</h4></div></header>' +
+          '<p>' + esc(h.weapon.blurb) + ' ' + esc(h.weapon.perk) + '</p><div class="stats">' + h.weapon.stats.map(function (s) { return "<span>" + esc(s) + "</span>"; }).join("") + '</div></div>' +
+        '<div class="kit-card"><header><img src="' + img(h.ability.icon) + '" alt=""><div><span class="slot">Ability · E</span><h4>' + esc(h.ability.name) + '</h4></div></header>' +
+          '<p>' + esc(h.ability.blurb) + '</p><div class="stats"><span>' + h.ability.cd + 's cooldown</span></div></div>' +
+        '<div class="kit-card"><header><img src="' + img(h.ult.icon) + '" alt=""><div><span class="slot">Ultimate · Q</span><h4>' + esc(h.ult.name) + '</h4></div></header>' +
+          '<p>' + esc(h.ult.blurb) + '</p></div>' +
+      '</div>' +
+    '</div>';
+}
+function selectHero(id, stay) {
+  selected = id;
+  store("hi-hero", id);
+  renderHeroGrid();
+  renderHeroDetail();
+  if (stay) $("#hero-detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+(function heroes() {
+  var tabs = $("#role-tabs");
+  ["All", "Tank", "Damage", "Support"].forEach(function (r) {
+    var b = el('<button type="button" aria-pressed="' + (r === "All") + '"><span>' + (r === "All" ? "" : '<img src="' + img("Role_" + r) + '" alt="">') + r + '</span></button>');
+    b.addEventListener("click", function () {
+      roleFilter = r;
+      tabs.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+      renderHeroGrid();
+    });
+    tabs.appendChild(b);
+  });
+  if (!hero(selected)) selected = "Solace";
+  renderHeroGrid();
+  renderHeroDetail();
+})();
+
+// ================================================================= tier list
+(function tiers() {
+  var root = $("#tier-list");
+  TIERS.forEach(function (tier) {
+    var row = el('<div class="tier-row" style="--t:' + tier.c + '"><div class="tier-label">' + tier.t + '</div><div class="tier-items"></div></div>');
+    var items = row.querySelector(".tier-items");
+    tier.heroes.forEach(function (e) {
+      var h = hero(e[0]);
+      items.appendChild(el('<div class="tier-item" style="--c:' + h.c + '"><div class="pic"><img src="' + img("Hero_" + h.id) + '" alt=""></div><div><b><img src="' + img("Role_" + h.role) + '" alt="' + h.role + '">' + h.id + '</b><p>' + esc(e[1]) + '</p></div></div>'));
+    });
+    root.appendChild(row);
+  });
+})();
+
+// ================================================================= ranks
+(function ranks() {
+  var body = $("#ladder");
+  RANKS.forEach(function (r, i) {
+    var chips = (UNLOCKS[i] || []).map(function (k) { var s = SYSTEMS[k]; return '<span class="chip" title="' + esc(s.b) + '"><span><img src="' + img(s.icon) + '" alt="">' + s.t + '</span></span>'; }).join("");
+    if (i >= 1) chips += '<span class="chip"><span><img src="' + img("HeroToken") + '" alt="">Hero Token</span></span>';
+    if (i === 10) chips += '<span class="chip pill-warn"><span>Gold: coming soon</span></span>';
+    var tier = r.name.split(" ")[1] || "–";
+    body.appendChild(el('<tr><td><span class="rank-badge" style="--a:' + r.a + ';--b:' + r.b + '"><i>' + tier + '</i>' + r.name + '</span></td>' +
+      '<td class="r num">' + (r.cost ? fmt(r.cost) : "Start") + '</td><td class="r num mult">×' + r.mult + '</td><td><div class="unlocks">' + chips + '</div></td></tr>'));
+  });
+  var tips = $("#tips");
+  TIPS.forEach(function (t) { tips.appendChild(el('<div class="tip"><img src="' + img(t[0]) + '" alt=""><div><b>' + esc(t[1]) + '</b><p>' + esc(t[2]) + '</p></div></div>')); });
+})();
+
+// ================================================================= runes
+function chances(altar, luck) {
+  var out = [];
+  if (altar.global) {
+    var total = altar.tiers.reduce(function (s, t) { return s + t[1]; }, 0);
+    return altar.tiers.map(function (t) { return t[1] / total; });
+  }
+  var remaining = 1;
+  for (var i = altar.tiers.length - 1; i >= 0; i--) {
+    var p = Math.min(1, (luck || 1) / altar.tiers[i][1]);
+    out[i] = remaining * p;
+    remaining -= out[i];
+  }
+  return out;
+}
+function oddsText(p) { if (p <= 0) return "–"; if (p >= 0.1) return (p * 100).toFixed(1).replace(/\.0$/, "") + "%"; return "1/" + fmt(1 / p); }
+function bonusText(b) {
+  return Object.keys(b).map(function (k) { var s = RUNE_STATS[k]; return '<span class="bonus" style="color:' + s[1] + '">×' + b[k] + " " + s[0] + "</span>"; }).join(" &nbsp;");
+}
+(function runes() {
+  var legend = $("#stat-legend");
+  [["Luck", "#6ee678", "Shortens the odds of rare tiers."], ["Bulk", "#5aaaff", "Runes gained per roll."], ["Speed", "#ffc846", "Rolls per second. Starts at 2."],
+   ["Clone", "#d2a0ff", "Extra copies of every roll."], ["Runes/s", "#ff6a5a", "Speed × Clone × Bulk."]].forEach(function (s) {
+    legend.appendChild(el('<div style="--sc:' + s[1] + '"><b>' + s[0] + '</b><span>' + s[2] + '</span></div>'));
+  });
+  var tabs = $("#altar-tabs"), body = $("#altar-body");
+  var current = store("hi-altar") || "Valor";
+  function show(id) {
+    current = id; store("hi-altar", id);
+    var a = ALTARS.filter(function (x) { return x.id === id; })[0] || ALTARS[0];
+    $("#altar-panel").style.setProperty("--accent", a.color);
+    tabs.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.id === a.id); });
+    var ch = chances(a, 1);
+    body.innerHTML = '<h2 style="margin:18px 0 0;color:' + a.color + '">' + a.name + '</h2>' +
+      '<div class="altar-meta"><span class="chip"><span>' + esc(a.where) + '</span></span><span class="chip"><span>Unlocks: ' + a.unlock + '</span></span><span class="chip"><span>Cost: ' + a.cost + '</span></span></div>' +
+      (a.global ? '<p class="note" style="margin-bottom:6px;">Whenever anyone buys Global Runes, every player in the server gets the rolls. Luck doesn\'t change these odds.</p>' : "") +
+      '<div class="table-scroll"><table><thead><tr><th>Tier</th><th class="r">' + (a.global ? "Chance" : "Base odds") + '</th><th>Bonus at [MAX]</th><th class="r">[MAX] at</th></tr></thead><tbody>' +
+      a.tiers.map(function (t, i) {
+        return '<tr><td><span class="tier-dot" style="--tc:' + TIER_COLORS[i] + '"></span><b>' + t[0] + '</b></td><td class="r num">' + (a.global ? oddsText(ch[i]) : "1/" + fmt(t[1])) +
+          '</td><td>' + bonusText(t[2]) + '</td><td class="r num">' + fmt(t[3]) + '</td></tr>';
+      }).join("") + '</tbody></table></div>' +
+      '<p class="note" style="margin-top:10px;">A tier\'s bonus grows with how many you own (fast at first, slower later) and stops at [MAX]. Bonuses from every altar multiply together.</p>';
+  }
+  ALTARS.forEach(function (a) {
+    var b = el('<button type="button" data-id="' + a.id + '" style="--rc:' + a.color + '"><span>' + a.name.replace("Rune of the ", "").replace("Rune of ", "") + '</span></button>');
+    b.addEventListener("click", function () { show(a.id); });
+    tabs.appendChild(b);
+  });
+  show(current);
+})();
+
+// ================================================================= tools: rune odds
+(function runeTool() {
+  var sel = $("#ro-altar");
+  ALTARS.forEach(function (a) { if (!a.global) sel.appendChild(el('<option value="' + a.id + '">' + a.name + '</option>')); });
+  var ids = ["ro-altar", "ro-pass-luck", "ro-pot-luck", "ro-shop-luck", "ro-attune", "ro-tierluck", "ro-pass-speed", "ro-pass-bulk", "ro-pass-clone", "ro-shop-speed"];
+  function v(id) { var e = document.getElementById(id); return e.type === "checkbox" ? e.checked : Number(e.value); }
+  function calc() {
+    ["ro-shop-luck", "ro-attune", "ro-shop-speed"].forEach(function (id) { document.getElementById(id + "-o").textContent = v(id); });
+    var a = ALTARS.filter(function (x) { return x.id === sel.value; })[0];
+    var luck = 1 * (1 + 0.25 * v("ro-attune")) * Math.max(1, v("ro-tierluck") || 1) * (1 + 0.1 * v("ro-shop-luck")) * (v("ro-pass-luck") ? 1.5 : 1) * (v("ro-pot-luck") ? 2 : 1);
+    var speed = 2 * (1 + 0.1 * v("ro-shop-speed")) * (v("ro-pass-speed") ? 1.5 : 1);
+    var bulk = 1 * (v("ro-pass-bulk") ? 1.5 : 1);
+    var clone = 1 + (v("ro-pass-clone") ? 1 : 0);
+    var rps = speed * bulk * clone;
+    $("#ro-readout").innerHTML =
+      '<div><b>×' + luck.toFixed(2) + '</b><span>Luck</span></div><div><b>' + speed.toFixed(1) + '/s</b><span>Speed</span></div>' +
+      '<div><b>' + bulk.toFixed(1) + '</b><span>Bulk</span></div><div><b>' + clone + '</b><span>Clone</span></div><div><b style="color:var(--orange)">' + fmt(rps) + '/s</b><span>Runes per second</span></div>';
+    var ch = chances(a, luck);
+    $("#ro-table").innerHTML = a.tiers.map(function (t, i) {
+      var perSec = rps * ch[i];
+      return '<tr><td><span class="tier-dot" style="--tc:' + TIER_COLORS[i] + '"></span><b>' + t[0] + '</b></td><td class="r num">1/' + fmt(t[1]) + '</td><td class="r num">' + oddsText(ch[i]) +
+        '</td><td class="r num">' + dur(1 / perSec) + '</td><td class="r num">' + fmt(perSec * 3600) + '</td><td class="r num">' + dur(t[3] / perSec) + '</td></tr>';
+    }).join("");
+  }
+  ids.forEach(function (id) { document.getElementById(id).addEventListener("input", calc); });
+  calc();
+})();
+
+// ================================================================= tools: rank planner
+(function rankTool() {
+  var sel = $("#rk-rank");
+  RANKS.forEach(function (r, i) { if (i < RANKS.length - 1) sel.appendChild(el('<option value="' + i + '"' + (i === 2 ? " selected" : "") + '>' + r.name + '</option>')); });
+  function calc() {
+    var from = Number(sel.value), have = Math.max(0, Number($("#rk-credits").value) || 0), perMin = Math.max(1, Number($("#rk-income").value) || 1);
+    var rows = "", firstEta = null;
+    for (var i = from + 1; i < RANKS.length; i++) {
+      var need = Math.max(0, RANKS[i].cost - (i === from + 1 ? have : 0));
+      var eta = need / perMin * 60;
+      if (firstEta === null) firstEta = eta;
+      rows += '<tr><td>' + RANKS[i].name + '</td><td class="r num">' + fmt(RANKS[i].cost) + '</td><td class="r num">' + fmt(need) + '</td><td class="r num">' + (need === 0 ? "Ready now" : dur(eta)) + '</td></tr>';
+    }
+    $("#rk-table").innerHTML = rows;
+    var next = RANKS[from + 1];
+    var pct = Math.min(100, have / next.cost * 100);
+    $("#rk-readout").innerHTML = '<div><b>' + next.name + '</b><span>Next rank</span></div><div><b>' + pct.toFixed(pct < 10 ? 1 : 0) + '%</b><span>Progress</span></div>' +
+      '<div><b style="color:var(--orange)">' + (firstEta === 0 ? "Now" : dur(firstEta)) + '</b><span>Time to rank up</span></div><div><b>×' + RANKS[from].mult + ' → ×' + next.mult + '</b><span>Credit multiplier</span></div>';
+  }
+  ["rk-rank", "rk-credits", "rk-income"].forEach(function (id) { document.getElementById(id).addEventListener("input", calc); });
+  calc();
+})();
+
+// ================================================================= tools: ticket planner
+(function ticketTool() {
+  var BOOSTS = [["RuneLuck", "More Luck", 10, "rune Luck"], ["RuneBulk", "More Bulk", 10, "rune Bulk"], ["RuneSpeed", "More Speed", 10, "rune Speed"], ["Credits", "More Credits", 5, "Credits"], ["Redeploy", "More Redeploy", 5, "Redeploy"]];
+  var sel = $("#tk-boost");
+  BOOSTS.forEach(function (b) { sel.appendChild(el('<option value="' + b[0] + '">' + b[1] + ' (0 → 10)</option>')); });
+  sel.appendChild(el('<option value="ALL">Every boost to level 10</option>'));
+  function calc() {
+    var hours = Number($("#tk-hours").value), have = Math.max(0, Number($("#tk-have").value) || 0);
+    $("#tk-hours-o").textContent = hours;
+    var perDay = hours * 12;
+    var pick = sel.value, rows = "", run = 0;
+    var list = pick === "ALL" ? BOOSTS : BOOSTS.filter(function (b) { return b[0] === pick; });
+    var boost = list[0];
+    for (var l = 0; l < 10; l++) {
+      var cost = 3 * (l + 1) * list.length;
+      run += cost;
+      var left = Math.max(0, run - have);
+      rows += '<tr><td>' + (l + 1) + '</td><td class="r num">' + cost + '</td><td class="r num">' + run + '</td><td class="r num">' +
+        (pick === "ALL" ? "Every boost" : "+" + (boost[2] * (l + 1)) + "% " + boost[3]) + '</td><td class="r num">' + (left === 0 ? "Now" : (left / perDay).toFixed(1).replace(/\.0$/, "") + " days") + '</td></tr>';
+    }
+    $("#tk-table").innerHTML = rows;
+    var total = run, left = Math.max(0, total - have);
+    $("#tk-readout").innerHTML = '<div><b>' + perDay + '</b><span>Tickets per day</span></div><div><b>' + total + '</b><span>Tickets to max</span></div>' +
+      '<div><b style="color:var(--orange)">' + (left === 0 ? "Now" : (left / perDay).toFixed(1).replace(/\.0$/, "") + " days") + '</b><span>Time to max</span></div>';
+  }
+  ["tk-hours", "tk-have", "tk-boost"].forEach(function (id) { document.getElementById(id).addEventListener("input", calc); });
+  calc();
+})();
+
+// ================================================================= bots
+(function bots() {
+  var grid = $("#bot-grid"), maxHp = Math.log10(400000);
+  BOTS.forEach(function (b) {
+    grid.appendChild(el('<div class="panel bot" style="--accent:var(--damage)"><div><h3>' + b.name + '</h3><div class="where">' + b.zone + ' · from ' + b.rank + '</div></div>' +
+      '<div class="hp-bar" title="Health (log scale)"><i style="width:' + (Math.log10(b.hp) / maxHp * 100).toFixed(1) + '%"></i></div>' +
+      '<dl><div><dt>Health</dt><dd>' + fmt(b.hp) + '</dd></div><div><dt>Armor</dt><dd>' + Math.round(b.armor * 100) + '%</dd></div><div><dt>Hit</dt><dd>' + b.dmg + '</dd></div>' +
+      '<div><dt>Credits</dt><dd style="color:var(--orange)">' + fmt(b.credits) + '</dd></div><div><dt>Respawn</dt><dd>' + b.respawn + 's</dd></div><div><dt>Credits / HP</dt><dd>' + (b.credits / b.hp).toFixed(2) + '</dd></div></dl>' +
+      (b.note ? '<p class="note">' + esc(b.note) + '</p>' : "") + '</div>'));
+  });
+})();
+
+// ================================================================= updates
+(function updates() {
+  var root = $("#patches");
+  PATCHES.forEach(function (p, i) {
+    root.appendChild(el('<article class="patch"><div class="patch-side"><b>' + p.tag + '</b>' + (i === 0 ? '<span class="chip pill-active"><span>Latest</span></span>' : "") + '</div>' +
+      '<div><h3>' + esc(p.title) + '</h3><ul>' + p.items.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + '</ul></div></article>'));
+  });
+})();
+
+// ================================================================= routing
+var PAGES = ["home", "codes", "heroes", "tiers", "ranks", "runes", "tools", "bots", "updates"];
+function route() {
+  var id = (location.hash || "#home").slice(1);
+  if (PAGES.indexOf(id) < 0) id = "home";
+  document.querySelectorAll("[data-page]").forEach(function (s) { s.hidden = s.dataset.page !== id; });
+  document.querySelectorAll(".nav a").forEach(function (a) {
+    if (a.getAttribute("href") === "#" + id) { a.setAttribute("aria-current", "page"); a.scrollIntoView({ block: "nearest", inline: "nearest" }); }
+    else a.removeAttribute("aria-current");
+  });
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+route();
+})();
+</script>
