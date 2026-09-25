@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hero Incremental Bots: Health, Armor &amp; Credits for Every Enemy</title>
+<meta name="description" content="Every Hero Incremental bot, from Training Drones to Wardens: health, armor, damage, Credit payout, respawn time and where each one spawns.">
+<link rel="canonical" href="https://daschen.github.io/hero-incremental-wiki/bots/">
+<meta property="og:url" content="https://daschen.github.io/hero-incremental-wiki/bots/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hero Incremental Wiki">
+<meta property="og:title" content="Hero Incremental Bots: Health, Armor &amp; Credits for Every Enemy">
+<meta property="og:description" content="Every Hero Incremental bot, from Training Drones to Wardens: health, armor, damage, Credit payout, respawn time and where each one spawns.">
+<meta property="og:image" content="https://daschen.github.io/hero-incremental-wiki/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a1224">
+
+<link rel="icon" type="image/png" sizes="96x96" href="/hero-incremental-wiki/assets/favicon-96.png">
+<link rel="apple-touch-icon" href="/hero-incremental-wiki/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,600;1,700;1,800;1,900&family=Jost:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/hero-incremental-wiki/assets/site.css?v=bcc42141">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://daschen.github.io/hero-incremental-wiki/"},{"@type":"ListItem","position":2,"name":"Bots","item":"https://daschen.github.io/hero-incremental-wiki/bots/"}]}</script>
+</head>
+<body data-base="/hero-incremental-wiki/" data-page="bots">
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/hero-incremental-wiki/" aria-label="Hero Incremental wiki home"><svg viewBox="0 0 40 40" aria-hidden="true"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="#f99e1a" stroke-width="3"/><polygon points="13,11 18,11 17,18 23,18 24,11 29,11 26,29 21,29 22,22 16,22 15,29 10,29" fill="#eef4ff"/></svg><b>HERO <span>INCREMENTAL</span></b></a>
+    <nav class="nav" aria-label="Sections"><a href="/hero-incremental-wiki/"><span>Home</span></a><a href="/hero-incremental-wiki/codes/"><span>Codes</span></a><a href="/hero-incremental-wiki/heroes/"><span>Heroes</span></a><a href="/hero-incremental-wiki/tier-list/"><span>Tier List</span></a><a href="/hero-incremental-wiki/ranks/"><span>Ranks</span></a><a href="/hero-incremental-wiki/runes/"><span>Runes</span></a><a href="/hero-incremental-wiki/calculator/"><span>Tools</span></a><a href="/hero-incremental-wiki/bots/" aria-current="page"><span>Bots</span></a><a href="/hero-incremental-wiki/updates/"><span>Updates</span></a></nav>
+    <a class="btn btn-primary btn-sm play-mini" href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener"><span>Play</span></a>
+  </div>
+</header>
+<main>
+<section class="wrap page">
+  <div class="page-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/hero-incremental-wiki/">Home</a><span aria-hidden="true">/</span><span>Bots</span></nav>
+    <div class="eyebrow">Enemy database</div>
+    <h1>Hero Incremental bots</h1>
+    <p class="lede">Every bot type, where it spawns and what it pays. Credits listed are base payouts: your rank's Credit multiplier and every upgrade stack on top.</p>
+    <p class="stamp">Updated <b>September 24, 2026</b></p>
+  </div>
+  <div class="bot-grid"><div class="panel bot" style="--accent:var(--damage)"><div><h2 class="bot-h">Training Drone</h2><div class="where">Main Hall · from Unranked</div></div>
+      <div class="hp-bar" title="Health (log scale)"><i style="width:35.7%"></i></div>
+      <dl><div><dt>Health</dt><dd>100</dd></div><div><dt>Armor</dt><dd>0%</dd></div><div><dt>Hit</dt><dd>3</dd></div>
+      <div><dt>Credits</dt><dd style="color:var(--orange)">10</dd></div><div><dt>Respawn</dt><dd>4s</dd></div><div><dt>Credits / HP</dt><dd>0.10</dd></div></dl></div><div class="panel bot" style="--accent:var(--damage)"><div><h2 class="bot-h">Armored Mech</h2><div class="where">Advanced Combat · from Bronze 3</div></div>
+      <div class="hp-bar" title="Health (log scale)"><i style="width:53.6%"></i></div>
+      <dl><div><dt>Health</dt><dd>1K</dd></div><div><dt>Armor</dt><dd>10%</dd></div><div><dt>Hit</dt><dd>15</dd></div>
+      <div><dt>Credits</dt><dd style="color:var(--orange)">100</dd></div><div><dt>Respawn</dt><dd>8s</dd></div><div><dt>Credits / HP</dt><dd>0.10</dd></div></dl><p class="note">Tank melee ignores its armor.</p></div><div class="panel bot" style="--accent:var(--damage)"><div><h2 class="bot-h">Elite Android</h2><div class="where">Elite Combat · from Bronze 1</div></div>
+      <div class="hp-bar" title="Health (log scale)"><i style="width:71.4%"></i></div>
+      <dl><div><dt>Health</dt><dd>10K</dd></div><div><dt>Armor</dt><dd>25%</dd></div><div><dt>Hit</dt><dd>5</dd></div>
+      <div><dt>Credits</dt><dd style="color:var(--orange)">1.5K</dd></div><div><dt>Respawn</dt><dd>16s</dd></div><div><dt>Credits / HP</dt><dd>0.15</dd></div></dl></div><div class="panel bot" style="--accent:var(--damage)"><div><h2 class="bot-h">Sentinel</h2><div class="where">Sturmfeste Village · from Silver 5</div></div>
+      <div class="hp-bar" title="Health (log scale)"><i style="width:78.5%"></i></div>
+      <dl><div><dt>Health</dt><dd>25K</dd></div><div><dt>Armor</dt><dd>15%</dd></div><div><dt>Hit</dt><dd>8</dd></div>
+      <div><dt>Credits</dt><dd style="color:var(--orange)">12K</dd></div><div><dt>Respawn</dt><dd>6s</dd></div><div><dt>Credits / HP</dt><dd>0.48</dd></div></dl></div><div class="panel bot" style="--accent:var(--damage)"><div><h2 class="bot-h">Knight</h2><div class="where">Castle Grounds · from Silver 4</div></div>
+      <div class="hp-bar" title="Health (log scale)"><i style="width:88.4%"></i></div>
+      <dl><div><dt>Health</dt><dd>90K</dd></div><div><dt>Armor</dt><dd>25%</dd></div><div><dt>Hit</dt><dd>18</dd></div>
+      <div><dt>Credits</dt><dd style="color:var(--orange)">60K</dd></div><div><dt>Respawn</dt><dd>10s</dd></div><div><dt>Credits / HP</dt><dd>0.67</dd></div></dl></div><div class="panel bot" style="--accent:var(--damage)"><div><h2 class="bot-h">Warden</h2><div class="where">The Keep · from Silver 2</div></div>
+      <div class="hp-bar" title="Health (log scale)"><i style="width:100.0%"></i></div>
+      <dl><div><dt>Health</dt><dd>4K</dd></div><div><dt>Armor</dt><dd>35%</dd></div><div><dt>Hit</dt><dd>12</dd></div>
+      <div><dt>Credits</dt><dd style="color:var(--orange)">35K</dd></div><div><dt>Respawn</dt><dd>20s</dd></div><div><dt>Credits / HP</dt><dd>0.88</dd></div></dl></div></div>
+</section>
+</main>
+<footer>
+  <div class="foot">
+    <div>
+      <b>Hero Incremental</b>
+      <p>A Roblox hero shooter incremental by gaurd21. Codes, guides and calculators, updated with every patch. Not affiliated with or endorsed by Roblox Corporation.</p>
+    </div>
+    <div>
+      <b>Game</b>
+      <a href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener">Play on Roblox</a>
+      <a href="/hero-incremental-wiki/codes/">Codes</a>
+      <a href="/hero-incremental-wiki/updates/">Patch notes</a>
+      <a href="/hero-incremental-wiki/bots/">Bots</a>
+    </div>
+    <div>
+      <b>Guides</b>
+      <a href="/hero-incremental-wiki/heroes/">Heroes</a>
+      <a href="/hero-incremental-wiki/tier-list/">Tier list</a>
+      <a href="/hero-incremental-wiki/ranks/">Ranks &amp; unlocks</a>
+      <a href="/hero-incremental-wiki/runes/">Rune odds</a>
+      <a href="/hero-incremental-wiki/calculator/">Calculators</a>
+    </div>
+  </div>
+</footer>
+<script src="/hero-incremental-wiki/assets/site.js?v=bcc42141" defer></script>
+</body>
+</html>

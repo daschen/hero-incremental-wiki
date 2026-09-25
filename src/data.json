@@ -1,0 +1,1191 @@
+{
+  "HEROES": [
+    {
+      "id": "Bulwark",
+      "role": "Tank",
+      "c": "#ffc83c",
+      "tag": "Walking fortress",
+      "desc": "Heavy armor, a crushing energy hammer, and a barrier that shrugs off anything the bots throw.",
+      "weapon": {
+        "name": "Breaker Hammer",
+        "blurb": "Slow, crushing melee swings that cleave every bot in front of you.",
+        "perk": "3.4× damage, ignores Armored bot armor, 14-stud reach.",
+        "stats": [
+          "3.4× dmg",
+          "0.42× rate",
+          "14 reach",
+          "Melee"
+        ]
+      },
+      "ability": {
+        "name": "Barrier",
+        "icon": "Ability_Barrier",
+        "cd": 14,
+        "blurb": "Project a shield: take 75% less damage for 6s."
+      },
+      "ult": {
+        "name": "Seismic Slam",
+        "icon": "Ult_SeismicSlam",
+        "blurb": "Slam the ground: a shockwave hits every bot in front of you and stuns them."
+      }
+    },
+    {
+      "id": "Anchor",
+      "role": "Tank",
+      "c": "#46e6d2",
+      "tag": "Siege diver",
+      "desc": "A deep-sea salvage diver in pressure armor. Drags bots into reach, holds the line, and makes the siege robot roll faster.",
+      "weapon": {
+        "name": "Tidebreaker",
+        "blurb": "A heavy chain whip with an anchor hook on the end. Lashes out further than any other melee.",
+        "perk": "2.6× damage, 26-stud lash.",
+        "stats": [
+          "2.6× dmg",
+          "0.45× rate",
+          "26 reach",
+          "Whip"
+        ]
+      },
+      "ability": {
+        "name": "Tether",
+        "icon": "Ability_Tether",
+        "cd": 9,
+        "blurb": "Hook the bot you're facing, drag it to you and stun it for 1.5s."
+      },
+      "ult": {
+        "name": "Undertow",
+        "icon": "Ult_Undertow",
+        "blurb": "Open a whirlpool where you aim: it drags every bot in and holds them there, crushing them for 4s."
+      }
+    },
+    {
+      "id": "Vanguard",
+      "role": "Damage",
+      "c": "#5ac8ff",
+      "tag": "Frontline rifleman",
+      "desc": "A disciplined all-rounder with a reliable pulse carbine. Easy to pick up, never out of place.",
+      "weapon": {
+        "name": "Pulse Carbine",
+        "blurb": "Balanced full-auto rifle.",
+        "perk": "Reliable at every range.",
+        "stats": [
+          "1× dmg",
+          "1× rate",
+          "Full auto"
+        ]
+      },
+      "ability": {
+        "name": "Overdrive",
+        "icon": "Ability_Overdrive",
+        "cd": 16,
+        "blurb": "+50% fire rate and instant reload for 5s."
+      },
+      "ult": {
+        "name": "Strike Beacon",
+        "icon": "Ult_StrikeBeacon",
+        "blurb": "Call an orbital strike where you aim: huge damage to every bot in the blast."
+      }
+    },
+    {
+      "id": "Flicker",
+      "role": "Damage",
+      "c": "#ffbe50",
+      "tag": "Time-skipping skirmisher",
+      "desc": "Blinks through space and hoses targets with twin rapid-fire pistols. Never stops moving.",
+      "weapon": {
+        "name": "Burner SMG",
+        "blurb": "Very fast fire, big magazine, low damage per shot.",
+        "perk": "0.55× damage, 1.9× fire rate.",
+        "stats": [
+          "0.55× dmg",
+          "1.9× rate",
+          "40 mag"
+        ]
+      },
+      "ability": {
+        "name": "Blink",
+        "icon": "Ability_Blink",
+        "cd": 3,
+        "blurb": "Dash 18 studs in the direction you're moving. 3 charges."
+      },
+      "ult": {
+        "name": "Time Surge",
+        "icon": "Ult_TimeSurge",
+        "blurb": "For 6s: triple fire rate, bottomless magazine and +40% move speed."
+      }
+    },
+    {
+      "id": "Havoc",
+      "role": "Damage",
+      "c": "#ff3c46",
+      "tag": "Close-range executioner",
+      "desc": "A hooded brawler with a scattergun that shreds anything in arm's reach.",
+      "weapon": {
+        "name": "Reaper Scattergun",
+        "blurb": "8 pellets per shot. The closer you are, the harder it hits.",
+        "perk": "Full damage within 8 studs, +25% point blank, 35% at 30+.",
+        "stats": [
+          "8 pellets",
+          "0.6× rate",
+          "8 mag"
+        ]
+      },
+      "ability": {
+        "name": "Wraith Form",
+        "icon": "Ability_Wraith",
+        "cd": 12,
+        "blurb": "Become invulnerable and 50% faster for 2.5s."
+      },
+      "ult": {
+        "name": "Death Spiral",
+        "icon": "Ult_DeathSpiral",
+        "blurb": "Spin for 3s, shredding every bot around you. Take 50% less damage while spinning."
+      }
+    },
+    {
+      "id": "Longshot",
+      "role": "Damage",
+      "c": "#dc82ff",
+      "tag": "Precision marksman",
+      "desc": "Patient, lethal, and always aiming for the head. Every shot is a big number.",
+      "weapon": {
+        "name": "Longbow Rail",
+        "blurb": "Slow, pinpoint shots. Crits deal 3×.",
+        "perk": "Up to +50% damage on targets 40+ studs away.",
+        "stats": [
+          "1.9× dmg",
+          "0.45× rate",
+          "3× crits"
+        ]
+      },
+      "ability": {
+        "name": "Deadeye",
+        "icon": "Ability_Deadeye",
+        "cd": 14,
+        "blurb": "Your next 5 hits are guaranteed critical hits."
+      },
+      "ult": {
+        "name": "Lockdown",
+        "icon": "Ult_Lockdown",
+        "blurb": "Lock on to every bot in sight, then fire: massive damage to each one."
+      }
+    },
+    {
+      "id": "Kestrel",
+      "role": "Damage",
+      "c": "#ffb43c",
+      "tag": "Sky hunter",
+      "desc": "A falconer of the high ramparts. Grapples onto anything, fires bolts that burst, and drops out of the sky.",
+      "weapon": {
+        "name": "Talon Crossbows",
+        "blurb": "Heavy bolts that stick in and burst after a moment, hitting everything nearby.",
+        "perk": "Bolts explode after 0.6s for 50% splash.",
+        "stats": [
+          "1.25× dmg",
+          "0.75× rate",
+          "Splash"
+        ]
+      },
+      "ability": {
+        "name": "Grapple Line",
+        "icon": "Ability_Grapple",
+        "cd": 7,
+        "blurb": "Fire a line at any surface you aim at and zip to it."
+      },
+      "ult": {
+        "name": "Talon Dive",
+        "icon": "Ult_TalonDive",
+        "blurb": "Leap high into the air, then slam down: huge damage to every bot where you land."
+      }
+    },
+    {
+      "id": "Ember",
+      "role": "Damage",
+      "c": "#ff8228",
+      "tag": "Pyro specialist",
+      "desc": "Carries the fire everywhere she goes. Everything she touches keeps burning after she's moved on.",
+      "weapon": {
+        "name": "Cinder Projector",
+        "blurb": "A short-range stream of fire. Bots keep burning after you stop.",
+        "perk": "Hits set bots burning for +35% damage over time.",
+        "stats": [
+          "4× rate",
+          "24 reach",
+          "Burn"
+        ]
+      },
+      "ability": {
+        "name": "Firebreak",
+        "icon": "Ability_Firebreak",
+        "cd": 12,
+        "blurb": "Throw down a patch of fire in front of you. Bots walking through it burn."
+      },
+      "ult": {
+        "name": "Inferno",
+        "icon": "Ult_Inferno",
+        "blurb": "Blast a huge cone of fire for 3s: every bot caught takes heavy damage, panics and burns."
+      }
+    },
+    {
+      "id": "Rivet",
+      "role": "Damage",
+      "c": "#50beff",
+      "tag": "Combat engineer",
+      "desc": "Builds what the fight needs. Nails that ricochet, a sentry in every pocket, and turrets that never sleep.",
+      "weapon": {
+        "name": "Nail Driver",
+        "blurb": "A rapid nail gun. Every nail ricochets into another bot nearby.",
+        "perk": "Hits bounce to a second bot for 40%.",
+        "stats": [
+          "1.05× dmg",
+          "0.85× rate",
+          "Ricochet"
+        ]
+      },
+      "ability": {
+        "name": "Pocket Sentry",
+        "icon": "Ability_Sentry",
+        "cd": 18,
+        "blurb": "Drop a mini-turret that shoots the nearest bot for 12s."
+      },
+      "ult": {
+        "name": "Overclock Field",
+        "icon": "Ult_OverclockField",
+        "blurb": "For 10s your turrets fire 3× faster, you fire 50% faster, and a free Pocket Sentry drops."
+      }
+    },
+    {
+      "id": "Broker",
+      "role": "Damage",
+      "c": "#ffcd50",
+      "tag": "War profiteer",
+      "desc": "Every bot has a price. Marks the valuable targets, takes a cut of every kill, and turns a fight into a payday.",
+      "weapon": {
+        "name": "Appraiser",
+        "blurb": "A precise revolver: slow, heavy shots with big crits.",
+        "perk": "Crits deal 2.5×.",
+        "stats": [
+          "1.5× dmg",
+          "0.55× rate",
+          "2.5× crits"
+        ]
+      },
+      "ability": {
+        "name": "Mark Asset",
+        "icon": "Ability_Mark",
+        "cd": 10,
+        "blurb": "Mark the bot you're facing: for 10s it pays 3× Credits and 3× Scrap when it dies."
+      },
+      "ult": {
+        "name": "Jackpot",
+        "icon": "Ult_Jackpot",
+        "blurb": "For 8s every kill pays 3× Credits, and you fire 25% faster."
+      }
+    },
+    {
+      "id": "Solace",
+      "role": "Support",
+      "c": "#fff0aa",
+      "tag": "Battlefield medic",
+      "desc": "A haloed field medic who outlasts everything. Nothing keeps her down for long.",
+      "weapon": {
+        "name": "Seraph Caster",
+        "blurb": "Accurate semi-rapid bolts that mend you.",
+        "perk": "Every hit heals you 3 HP.",
+        "stats": [
+          "0.95× dmg",
+          "1.05× rate",
+          "Lifesteal"
+        ]
+      },
+      "ability": {
+        "name": "Renew",
+        "icon": "Ability_Renew",
+        "cd": 12,
+        "blurb": "Heal 80 HP over 2s and move 30% faster."
+      },
+      "ult": {
+        "name": "Sanctuary",
+        "icon": "Ult_Sanctuary",
+        "blurb": "For 10s: you're invulnerable, and you and nearby allies deal 2× damage and earn 2× Credits."
+      }
+    },
+    {
+      "id": "Vesper",
+      "role": "Support",
+      "c": "#be78ff",
+      "tag": "Bio-alchemist",
+      "desc": "A rogue alchemist who drinks the fight. Her siphon drains bots to keep her alive, and her orbs keep the squad going.",
+      "weapon": {
+        "name": "Siphon Gauntlet",
+        "blurb": "A short-range draining stream that locks on easily and heals you as it hits.",
+        "perk": "Never reloads. Every hit heals you 1.2 HP.",
+        "stats": [
+          "5× rate",
+          "26 reach",
+          "No reload"
+        ]
+      },
+      "ability": {
+        "name": "Bloom Orb",
+        "icon": "Ability_Bloom",
+        "cd": 10,
+        "blurb": "Throw an orb that bounces around for 6s, draining bots it passes and healing you and allies nearby."
+      },
+      "ult": {
+        "name": "Confluence",
+        "icon": "Ult_Confluence",
+        "blurb": "For 7s project a long siphon beam that pierces every bot in a line and heals you as it drains."
+      }
+    }
+  ],
+  "ROLE_COLOR": {
+    "Tank": "var(--tank)",
+    "Damage": "var(--damage)",
+    "Support": "var(--support)"
+  },
+  "CODES": [
+    {
+      "code": "LAUNCH",
+      "reward": "+50 Cargo and 20 minutes of 2× Credits",
+      "req": "Anyone"
+    },
+    {
+      "code": "STURMFESTE",
+      "reward": "+40 Crowns and 15 minutes of 2× Credits",
+      "req": "Silver rank"
+    },
+    {
+      "code": "THANKYOU",
+      "reward": "+1 Hero Token",
+      "req": "Anyone",
+      "expires": "2026-12-31"
+    }
+  ],
+  "KEYS": [
+    [
+      "Q",
+      "Ultimate"
+    ],
+    [
+      "E",
+      "Ability"
+    ],
+    [
+      "F",
+      "Upgrades"
+    ],
+    [
+      "X",
+      "Shop"
+    ],
+    [
+      "C",
+      "Cargo Bay"
+    ],
+    [
+      "Y",
+      "Runes"
+    ],
+    [
+      "T",
+      "Fast travel"
+    ],
+    [
+      "M",
+      "Mobility tree"
+    ],
+    [
+      "L",
+      "Research Lab"
+    ],
+    [
+      "K",
+      "Trials"
+    ],
+    [
+      "G",
+      "Grapple"
+    ],
+    [
+      "Ctrl",
+      "Dash"
+    ]
+  ],
+  "RANKS": [
+    {
+      "name": "Unranked",
+      "cost": 0,
+      "mult": 1,
+      "a": "#5a606a",
+      "b": "#bec6d0"
+    },
+    {
+      "name": "Bronze 5",
+      "cost": 2500,
+      "mult": 3,
+      "a": "#6e3e20",
+      "b": "#e09e5c"
+    },
+    {
+      "name": "Bronze 4",
+      "cost": 20000,
+      "mult": 5,
+      "a": "#6e3e20",
+      "b": "#e09e5c"
+    },
+    {
+      "name": "Bronze 3",
+      "cost": 710000,
+      "mult": 9,
+      "a": "#6e3e20",
+      "b": "#e09e5c"
+    },
+    {
+      "name": "Bronze 2",
+      "cost": 330000000,
+      "mult": 14,
+      "a": "#6e3e20",
+      "b": "#e09e5c"
+    },
+    {
+      "name": "Bronze 1",
+      "cost": 980000000,
+      "mult": 20,
+      "a": "#6e3e20",
+      "b": "#e09e5c"
+    },
+    {
+      "name": "Silver 5",
+      "cost": 3000000000,
+      "mult": 40,
+      "a": "#8c919b",
+      "b": "#ebf0f5"
+    },
+    {
+      "name": "Silver 4",
+      "cost": 9000000000,
+      "mult": 60,
+      "a": "#8c919b",
+      "b": "#ebf0f5"
+    },
+    {
+      "name": "Silver 3",
+      "cost": 20000000000,
+      "mult": 90,
+      "a": "#8c919b",
+      "b": "#ebf0f5"
+    },
+    {
+      "name": "Silver 2",
+      "cost": 40000000000,
+      "mult": 135,
+      "a": "#8c919b",
+      "b": "#ebf0f5"
+    },
+    {
+      "name": "Silver 1",
+      "cost": 90000000000,
+      "mult": 200,
+      "a": "#8c919b",
+      "b": "#ebf0f5"
+    }
+  ],
+  "SYSTEMS": {
+    "OnFire": {
+      "t": "On Fire",
+      "icon": "OnFire",
+      "b": "Chain kills without getting hit to build heat. Heat multiplies kill Credits up to 2.5×."
+    },
+    "Ultimate": {
+      "t": "Ultimates",
+      "icon": "Ultimate",
+      "b": "Damage and kills charge your hero's ultimate. Press Q when it's ready."
+    },
+    "Redeploy": {
+      "t": "Redeploy",
+      "icon": "Redeploy",
+      "b": "Cash in Credits for permanent Redeploy points and Rank XP."
+    },
+    "CargoBay": {
+      "t": "Cargo Bay",
+      "icon": "Cargo",
+      "b": "Cargo never resets. Spend it (C) on permanent upgrades that boost everything."
+    },
+    "Payload": {
+      "t": "Payload",
+      "icon": "Payload",
+      "b": "Escort the payload through the Main Hall. Checkpoints pay Cargo, Credits and Rank XP."
+    },
+    "Turrets": {
+      "t": "Turrets",
+      "icon": "Turrets",
+      "b": "Bots drop Scrap. Build turrets at the glowing sockets to fight alongside you."
+    },
+    "Mastery": {
+      "t": "Hero Mastery",
+      "icon": "Mastery",
+      "b": "Kills level up the hero you play. Pick a minor perk at level 2 and a major perk at level 3."
+    },
+    "Bounties": {
+      "t": "Bounties",
+      "icon": "Marks",
+      "b": "WANTED bots appear every few minutes. Take them down for Bounty Marks."
+    },
+    "Control": {
+      "t": "Control Point",
+      "icon": "CP",
+      "b": "Capture the active point for Competitive Points. The point moves after each capture."
+    },
+    "Runes": {
+      "t": "Runes",
+      "icon": "Runes",
+      "b": "Stand on an altar in the Armory to roll. Every tier you collect boosts you forever."
+    },
+    "Promotion": {
+      "t": "Tier Promotion",
+      "icon": "Promotion",
+      "b": "Promote to Silver: reset your Redeploy progress for Skill Rating and a new ladder."
+    },
+    "Sturmfeste": {
+      "t": "Sturmfeste",
+      "icon": "Sturmfeste",
+      "b": "A storm-lashed castle town whose Sentinels, Knights and Wardens pay far more."
+    },
+    "Push": {
+      "t": "Siege Push",
+      "icon": "Crowns",
+      "b": "Escort the siege robot to the throne. Checkpoints pay Crowns; your best distance is a permanent Credits boost."
+    },
+    "Mobility": {
+      "t": "Mobility",
+      "icon": "Momentum",
+      "b": "Parkour runs pay Momentum. Spend it on double jump, dash, wall-run and the grapple hook."
+    },
+    "Research": {
+      "t": "Research Lab",
+      "icon": "Crowns",
+      "b": "Spend Crowns on permanent research. The timers keep running while you're offline."
+    },
+    "Trials": {
+      "t": "Trials",
+      "icon": "SR",
+      "b": "Challenge runs at the Tourney Yard. Beat the handicap for permanent rewards and automation."
+    }
+  },
+  "UNLOCKS": {
+    "0": [
+      "OnFire",
+      "Ultimate"
+    ],
+    "1": [
+      "Redeploy",
+      "CargoBay"
+    ],
+    "2": [
+      "Payload"
+    ],
+    "3": [
+      "Turrets",
+      "Mastery",
+      "Bounties"
+    ],
+    "4": [
+      "Control",
+      "Runes"
+    ],
+    "5": [
+      "Promotion"
+    ],
+    "6": [
+      "Sturmfeste",
+      "Push"
+    ],
+    "7": [
+      "Mobility"
+    ],
+    "8": [
+      "Research"
+    ],
+    "9": [
+      "Trials"
+    ]
+  },
+  "TIPS": [
+    [
+      "Redeploy",
+      "Redeploy early and often",
+      "Redeploy points never reset between runs. The first few Redeploys pay back fastest, so don't sit on a big pile of Credits."
+    ],
+    [
+      "Cargo",
+      "Cargo Bay first",
+      "Cargo upgrades are permanent and boost every run. Spend Cargo as soon as you have it."
+    ],
+    [
+      "OnFire",
+      "Stay On Fire",
+      "Chaining kills without taking a hit builds heat up to 2.5× Credits. Healers and tanks keep the streak alive longest."
+    ],
+    [
+      "Runes",
+      "Park on an altar",
+      "Runes only roll while you stand on an altar (or anywhere with Auto Rune). Idle on one while you plan upgrades."
+    ],
+    [
+      "Ticket",
+      "Tickets reward playtime",
+      "You get 1 Ticket every 5 minutes in game. Spend them on permanent Boosts before potions."
+    ],
+    [
+      "Crowns",
+      "Start research before you log off",
+      "Research Lab timers keep running while you're offline, so queue the longest project last."
+    ],
+    [
+      "Marks",
+      "Bounty Marks are permanent",
+      "Marks and Competitive Points, and everything you buy with them, never reset."
+    ],
+    [
+      "HeroToken",
+      "Every rank is a new hero",
+      "Each rank up gives a Hero Token. Try every role: a tank changes how the Payload and Push play."
+    ]
+  ],
+  "RUNE_STATS": {
+    "Credits": [
+      "Credits",
+      "#5ac8ff"
+    ],
+    "Damage": [
+      "Damage",
+      "#ff6e5a"
+    ],
+    "Redeploy": [
+      "Redeploy",
+      "#ffb741"
+    ],
+    "Cargo": [
+      "Cargo",
+      "#78e696"
+    ],
+    "Salvage": [
+      "Scrap",
+      "#5ae6e6"
+    ],
+    "Crowns": [
+      "Crowns",
+      "#ffcd50"
+    ],
+    "Momentum": [
+      "Momentum",
+      "#6ee6f0"
+    ],
+    "RuneLuck": [
+      "Luck",
+      "#6ee678"
+    ],
+    "RuneBulk": [
+      "Bulk",
+      "#5aaaff"
+    ],
+    "RuneSpeed": [
+      "Speed",
+      "#ffc846"
+    ]
+  },
+  "ALTARS": [
+    {
+      "id": "Valor",
+      "name": "Rune of Valor",
+      "color": "#aa6eff",
+      "where": "Armory (behind the Training Hub)",
+      "unlock": "Bronze 2",
+      "cost": "25 Redeploy",
+      "tiers": [
+        [
+          "Spark",
+          1,
+          {
+            "Credits": 1.25
+          },
+          10000
+        ],
+        [
+          "Glimmer",
+          4,
+          {
+            "Damage": 1.25,
+            "RuneLuck": 1.2
+          },
+          5000
+        ],
+        [
+          "Pulse",
+          25,
+          {
+            "Credits": 1.5,
+            "RuneSpeed": 1.3
+          },
+          2000
+        ],
+        [
+          "Surge",
+          150,
+          {
+            "Damage": 1.5,
+            "Redeploy": 1.25
+          },
+          500
+        ],
+        [
+          "Overdrive",
+          1000,
+          {
+            "Credits": 2,
+            "RuneLuck": 1.5
+          },
+          150
+        ],
+        [
+          "Apex",
+          10000,
+          {
+            "Damage": 2,
+            "Redeploy": 1.5
+          },
+          40
+        ],
+        [
+          "Mythic",
+          150000,
+          {
+            "Credits": 3,
+            "RuneBulk": 2
+          },
+          8
+        ],
+        [
+          "Transcendent",
+          3000000,
+          {
+            "Credits": 5,
+            "Damage": 3
+          },
+          2
+        ]
+      ]
+    },
+    {
+      "id": "Fortune",
+      "name": "Rune of Fortune",
+      "color": "#ffc446",
+      "where": "Armory (behind the Training Hub)",
+      "unlock": "Bronze 1",
+      "cost": "250 Redeploy",
+      "tiers": [
+        [
+          "Copper",
+          1,
+          {
+            "Redeploy": 1.25
+          },
+          10000
+        ],
+        [
+          "Silver",
+          5,
+          {
+            "Cargo": 1.25,
+            "RuneBulk": 1.2
+          },
+          4000
+        ],
+        [
+          "Gilded",
+          30,
+          {
+            "Redeploy": 1.5
+          },
+          1500
+        ],
+        [
+          "Jewel",
+          200,
+          {
+            "Salvage": 1.5,
+            "RuneSpeed": 1.25
+          },
+          400
+        ],
+        [
+          "Royal",
+          1500,
+          {
+            "Redeploy": 2,
+            "Cargo": 1.5
+          },
+          120
+        ],
+        [
+          "Treasure",
+          20000,
+          {
+            "Credits": 2,
+            "RuneLuck": 1.5
+          },
+          30
+        ],
+        [
+          "Hoard",
+          300000,
+          {
+            "Redeploy": 3,
+            "RuneBulk": 2
+          },
+          6
+        ],
+        [
+          "Midas",
+          5000000,
+          {
+            "Credits": 5,
+            "Redeploy": 5
+          },
+          2
+        ]
+      ]
+    },
+    {
+      "id": "Tempest",
+      "name": "Rune of the Tempest",
+      "color": "#5ac8ff",
+      "where": "Sturmhorn Tavern (Sturmfeste)",
+      "unlock": "Silver 5",
+      "cost": "300 Crowns",
+      "tiers": [
+        [
+          "Drizzle",
+          1,
+          {
+            "Crowns": 1.25
+          },
+          10000
+        ],
+        [
+          "Gale",
+          6,
+          {
+            "Momentum": 1.25
+          },
+          4000
+        ],
+        [
+          "Thunder",
+          40,
+          {
+            "Crowns": 1.5,
+            "RuneSpeed": 1.25
+          },
+          1500
+        ],
+        [
+          "Cyclone",
+          300,
+          {
+            "Damage": 1.5,
+            "Momentum": 1.5
+          },
+          400
+        ],
+        [
+          "Maelstrom",
+          2500,
+          {
+            "Crowns": 2,
+            "RuneLuck": 1.5
+          },
+          100
+        ],
+        [
+          "Stormeye",
+          40000,
+          {
+            "Credits": 2,
+            "Damage": 2
+          },
+          25
+        ],
+        [
+          "Stormborn",
+          600000,
+          {
+            "Crowns": 3,
+            "RuneBulk": 2
+          },
+          5
+        ],
+        [
+          "Tempest King",
+          10000000,
+          {
+            "Credits": 5,
+            "Crowns": 5
+          },
+          2
+        ]
+      ]
+    },
+    {
+      "id": "Unity",
+      "name": "Rune of Unity",
+      "color": "#ff7850",
+      "where": "Global: bought in the Shop",
+      "unlock": "Anyone",
+      "cost": "Robux",
+      "global": true,
+      "tiers": [
+        [
+          "Recruit",
+          89,
+          {
+            "Credits": 1.25
+          },
+          1000
+        ],
+        [
+          "Ally",
+          10,
+          {
+            "RuneLuck": 1.5
+          },
+          200
+        ],
+        [
+          "Comrade",
+          0.89,
+          {
+            "Credits": 2,
+            "Redeploy": 1.5
+          },
+          30
+        ],
+        [
+          "Champion",
+          0.1,
+          {
+            "Damage": 2,
+            "RuneBulk": 1.5
+          },
+          5
+        ],
+        [
+          "Legend",
+          0.01,
+          {
+            "Credits": 3,
+            "Damage": 3,
+            "Redeploy": 3
+          },
+          1
+        ]
+      ]
+    }
+  ],
+  "TIER_COLORS": [
+    "#c8d0dc",
+    "#6ee678",
+    "#5aaaff",
+    "#b478ff",
+    "#ff78c8",
+    "#ffc446",
+    "#ff8a3c",
+    "#ff4a5a"
+  ],
+  "BOTS": [
+    {
+      "id": "Training",
+      "name": "Training Drone",
+      "zone": "Main Hall",
+      "rank": "Unranked",
+      "hp": 100,
+      "armor": 0,
+      "dmg": 3,
+      "credits": 10,
+      "respawn": 4
+    },
+    {
+      "id": "Armored",
+      "name": "Armored Mech",
+      "zone": "Advanced Combat",
+      "rank": "Bronze 3",
+      "hp": 1000,
+      "armor": 0.1,
+      "dmg": 15,
+      "credits": 100,
+      "respawn": 8,
+      "note": "Tank melee ignores its armor."
+    },
+    {
+      "id": "Elite",
+      "name": "Elite Android",
+      "zone": "Elite Combat",
+      "rank": "Bronze 1",
+      "hp": 10000,
+      "armor": 0.25,
+      "dmg": 5,
+      "credits": 1500,
+      "respawn": 16
+    },
+    {
+      "id": "Sentinel",
+      "name": "Sentinel",
+      "zone": "Sturmfeste Village",
+      "rank": "Silver 5",
+      "hp": 25000,
+      "armor": 0.15,
+      "dmg": 8,
+      "credits": 12000,
+      "respawn": 6
+    },
+    {
+      "id": "Knight",
+      "name": "Knight",
+      "zone": "Castle Grounds",
+      "rank": "Silver 4",
+      "hp": 90000,
+      "armor": 0.25,
+      "dmg": 18,
+      "credits": 60000,
+      "respawn": 10
+    },
+    {
+      "id": "Warden",
+      "name": "Warden",
+      "zone": "The Keep",
+      "rank": "Silver 2",
+      "hp": 400000,
+      "armor": 0.35,
+      "dmg": 12,
+      "credits": 350000,
+      "respawn": 20
+    }
+  ],
+  "TIERS": [
+    {
+      "t": "S",
+      "c": "#ff4a5a",
+      "heroes": [
+        [
+          "Broker",
+          "Jackpot triples kill Credits for 8s, and Mark Asset turns any tough bot into a 3× payout."
+        ],
+        [
+          "Solace",
+          "Sanctuary doubles damage and Credits for the whole squad, and lifesteal keeps her On Fire."
+        ],
+        [
+          "Rivet",
+          "Ricocheting nails hit two bots at once, and Overclock Field triples your turrets' fire rate."
+        ]
+      ]
+    },
+    {
+      "t": "A",
+      "c": "#f99e1a",
+      "heroes": [
+        [
+          "Ember",
+          "Burn keeps ticking on every bot she touches. Inferno clears whole packs."
+        ],
+        [
+          "Vesper",
+          "Never reloads and heals on every hit. Confluence pierces a whole line of bots."
+        ],
+        [
+          "Longshot",
+          "Lockdown hits every bot in sight for 12×. Best against tanky Silver bots."
+        ],
+        [
+          "Bulwark",
+          "Seven-ray cleave ignores Armored bot armor. Unkillable behind Barrier."
+        ]
+      ]
+    },
+    {
+      "t": "B",
+      "c": "#ffcf5a",
+      "heroes": [
+        [
+          "Kestrel",
+          "Splash bolts are strong on groups, and the grapple reaches parkour shortcuts."
+        ],
+        [
+          "Vanguard",
+          "Solid everywhere. Strike Beacon's 14× blast is great for packed spawns."
+        ],
+        [
+          "Anchor",
+          "Undertow groups bots for your team, and the 26-stud whip is the longest melee."
+        ],
+        [
+          "Havoc",
+          "Huge point-blank damage, but you need to get close to every bot."
+        ]
+      ]
+    },
+    {
+      "t": "C",
+      "c": "#5ac8ff",
+      "heroes": [
+        [
+          "Flicker",
+          "Fun and fast, but 0.55× damage per shot falls off once bots get armor."
+        ]
+      ]
+    }
+  ],
+  "PATCHES": [
+    {
+      "tag": "Runes",
+      "title": "Runes, Armory & Shop",
+      "items": [
+        "New Armory room behind the Training Hub with the Rune of Valor and Rune of Fortune altars.",
+        "Runes rebuilt: stand on an altar to roll. Every tier grows a permanent bonus up to [MAX].",
+        "Rune of the Tempest altar in the Sturmhorn Tavern. Global Runes give every player in the server free rolls.",
+        "New Shop with Tickets (1 every 5 minutes you play), permanent Boosts, potions, bundles and codes.",
+        "Bounty Marks, Competitive Points and their upgrades are now permanent.",
+        "Roblox Premium members get +10% on every currency.",
+        "The Control Point is now a ring on the ground that fills as you capture."
+      ]
+    },
+    {
+      "tag": "Polish",
+      "title": "Grapple & feel pass",
+      "items": [
+        "Grapple now lands you on top of perches instead of flinging you off them.",
+        "Bot shots now come out of their weapons and hands.",
+        "Capture ring reads upright from any angle."
+      ]
+    },
+    {
+      "tag": "Roster",
+      "title": "Twelve heroes",
+      "items": [
+        "Six new heroes: Anchor, Kestrel, Ember, Rivet, Broker and Vesper.",
+        "Free choice: every rank up grants a Hero Token for any hero.",
+        "First-person arms now match your hero's model."
+      ]
+    },
+    {
+      "tag": "Silver",
+      "title": "Sturmfeste",
+      "items": [
+        "Silver ranks unlock Sturmfeste, a storm-lashed castle town with Sentinels, Knights and Wardens.",
+        "Siege Push, the Mobility tree with parkour courses, the Research Lab and Trials.",
+        "Fast travel (T) and in-game feedback."
+      ]
+    }
+  ]
+}

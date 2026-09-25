@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hero Incremental Calculators: Rune Odds, Rank-Up &amp; Ticket Planner</title>
+<meta name="description" content="Free Hero Incremental calculators: rune odds and time to [MAX] for every altar, time to your next rank, and how long to max ticket boosts.">
+<link rel="canonical" href="https://daschen.github.io/hero-incremental-wiki/calculator/">
+<meta property="og:url" content="https://daschen.github.io/hero-incremental-wiki/calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hero Incremental Wiki">
+<meta property="og:title" content="Hero Incremental Calculators: Rune Odds, Rank-Up &amp; Ticket Planner">
+<meta property="og:description" content="Free Hero Incremental calculators: rune odds and time to [MAX] for every altar, time to your next rank, and how long to max ticket boosts.">
+<meta property="og:image" content="https://daschen.github.io/hero-incremental-wiki/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a1224">
+
+<link rel="icon" type="image/png" sizes="96x96" href="/hero-incremental-wiki/assets/favicon-96.png">
+<link rel="apple-touch-icon" href="/hero-incremental-wiki/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,600;1,700;1,800;1,900&family=Jost:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/hero-incremental-wiki/assets/site.css?v=bcc42141">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://daschen.github.io/hero-incremental-wiki/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://daschen.github.io/hero-incremental-wiki/calculator/"}]}</script>
+</head>
+<body data-base="/hero-incremental-wiki/" data-page="calculator">
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/hero-incremental-wiki/" aria-label="Hero Incremental wiki home"><svg viewBox="0 0 40 40" aria-hidden="true"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="#f99e1a" stroke-width="3"/><polygon points="13,11 18,11 17,18 23,18 24,11 29,11 26,29 21,29 22,22 16,22 15,29 10,29" fill="#eef4ff"/></svg><b>HERO <span>INCREMENTAL</span></b></a>
+    <nav class="nav" aria-label="Sections"><a href="/hero-incremental-wiki/"><span>Home</span></a><a href="/hero-incremental-wiki/codes/"><span>Codes</span></a><a href="/hero-incremental-wiki/heroes/"><span>Heroes</span></a><a href="/hero-incremental-wiki/tier-list/"><span>Tier List</span></a><a href="/hero-incremental-wiki/ranks/"><span>Ranks</span></a><a href="/hero-incremental-wiki/runes/"><span>Runes</span></a><a href="/hero-incremental-wiki/calculator/" aria-current="page"><span>Tools</span></a><a href="/hero-incremental-wiki/bots/"><span>Bots</span></a><a href="/hero-incremental-wiki/updates/"><span>Updates</span></a></nav>
+    <a class="btn btn-primary btn-sm play-mini" href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener"><span>Play</span></a>
+  </div>
+</header>
+<main>
+<section class="wrap page">
+  <div class="page-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/hero-incremental-wiki/">Home</a><span aria-hidden="true">/</span><span>Calculators</span></nav>
+    <div class="eyebrow">Calculators</div>
+    <h1>Hero Incremental calculators</h1>
+    <p class="lede">Plug in your numbers to plan rune farming, rank ups and ticket spending. They use the same formulas as the game.</p>
+    <p class="stamp">Updated <b>September 24, 2026</b></p>
+  </div>
+  <div class="panel tool altar-sec" id="runes">
+    <div class="form">
+      <h2 style="margin: 0;">Rune odds calculator</h2>
+      <div class="field"><label for="ro-altar">Altar</label><select id="ro-altar"></select></div>
+      <div class="field"><span class="lbl">Luck</span>
+        <label class="check"><input type="checkbox" id="ro-pass-luck"> Rune Luck pass (×1.5)</label>
+        <label class="check"><input type="checkbox" id="ro-pot-luck"> Luck Potion active (×2)</label>
+      </div>
+      <div class="field"><label for="ro-shop-luck">"More Luck" boost level</label><div class="range-row"><input type="range" id="ro-shop-luck" min="0" max="10" value="3"><output id="ro-shop-luck-o">3</output></div></div>
+      <div class="field"><label for="ro-attune">Rune Attunement (Cargo Bay)</label><div class="range-row"><input type="range" id="ro-attune" min="0" max="3" value="1"><output id="ro-attune-o">1</output></div></div>
+      <div class="field"><label for="ro-tierluck">Luck from owned runes (×)</label><input type="number" id="ro-tierluck" min="1" step="0.05" value="1.2"></div>
+      <div class="field"><span class="lbl">Rolling</span>
+        <label class="check"><input type="checkbox" id="ro-pass-speed"> Rune Speed pass (×1.5)</label>
+        <label class="check"><input type="checkbox" id="ro-pass-bulk"> Rune Bulk pass (×1.5)</label>
+        <label class="check"><input type="checkbox" id="ro-pass-clone"> Rune Clone pass (+1)</label>
+      </div>
+      <div class="field"><label for="ro-shop-speed">"More Speed" boost level</label><div class="range-row"><input type="range" id="ro-shop-speed" min="0" max="10" value="2"><output id="ro-shop-speed-o">2</output></div></div>
+    </div>
+    <div class="results">
+      <div class="readout" id="ro-readout"></div>
+      <div class="table-scroll"><table><thead><tr><th>Tier</th><th class="r">Base odds</th><th class="r">Your odds</th><th class="r">First pull in</th><th class="r">Per hour</th><th class="r">[MAX] in</th></tr></thead><tbody id="ro-table"></tbody></table></div>
+      <p class="note">Example build shown. Times are averages: rare tiers can land much sooner or later. "Luck from owned runes" is the Luck bonus on your Runes menu stats line.</p>
+    </div>
+  </div>
+  <div class="panel tool altar-sec" id="rank" style="--accent: var(--sky);">
+    <div class="form">
+      <h2 style="margin: 0;">Rank-up calculator</h2>
+      <div class="field"><label for="rk-rank">Current rank</label><select id="rk-rank"></select></div>
+      <div class="field"><label for="rk-credits">Credits you have</label><input type="number" id="rk-credits" min="0" step="1000" value="120000"></div>
+      <div class="field"><label for="rk-income">Credits per minute</label><input type="number" id="rk-income" min="1" step="1000" value="45000"></div>
+    </div>
+    <div class="results">
+      <div class="readout" id="rk-readout"></div>
+      <div class="table-scroll"><table><thead><tr><th>Next rank</th><th class="r">Cost</th><th class="r">Still needed</th><th class="r">Time at this income</th></tr></thead><tbody id="rk-table"></tbody></table></div>
+      <p class="note">Example numbers shown. Your income jumps after every rank up (higher Credit multiplier), so later ranks arrive sooner than this estimate.</p>
+    </div>
+  </div>
+  <div class="panel tool altar-sec" id="tickets" style="--accent: var(--warn);">
+    <div class="form">
+      <h2 style="margin: 0;">Ticket planner</h2>
+      <div class="field"><label for="tk-hours">Hours played per day</label><div class="range-row"><input type="range" id="tk-hours" min="0.5" max="8" step="0.5" value="2"><output id="tk-hours-o">2</output></div></div>
+      <div class="field"><label for="tk-have">Tickets you have</label><input type="number" id="tk-have" min="0" value="40"></div>
+      <div class="field"><label for="tk-boost">Plan for</label><select id="tk-boost"></select></div>
+    </div>
+    <div class="results">
+      <div class="readout" id="tk-readout"></div>
+      <div class="table-scroll"><table><thead><tr><th>Level</th><th class="r">Ticket cost</th><th class="r">Running total</th><th class="r">Bonus</th><th class="r">Ready in</th></tr></thead><tbody id="tk-table"></tbody></table></div>
+      <p class="note">You earn 1 Ticket for every 5 minutes in the game (nothing while offline). Each boost level costs 3 Tickets more than the last. Potion packs cost 20 Tickets for 10 potions.</p>
+    </div>
+  </div>
+</section>
+<script type="application/json" id="hi-data">{"RANKS":[{"name":"Unranked","cost":0,"mult":1,"a":"#5a606a","b":"#bec6d0"},{"name":"Bronze 5","cost":2500,"mult":3,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 4","cost":20000,"mult":5,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 3","cost":710000,"mult":9,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 2","cost":330000000,"mult":14,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 1","cost":980000000,"mult":20,"a":"#6e3e20","b":"#e09e5c"},{"name":"Silver 5","cost":3000000000,"mult":40,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 4","cost":9000000000,"mult":60,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 3","cost":20000000000,"mult":90,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 2","cost":40000000000,"mult":135,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 1","cost":90000000000,"mult":200,"a":"#8c919b","b":"#ebf0f5"}],"ALTARS":[{"id":"Valor","name":"Rune of Valor","color":"#aa6eff","where":"Armory (behind the Training Hub)","unlock":"Bronze 2","cost":"25 Redeploy","tiers":[["Spark",1,{"Credits":1.25},10000],["Glimmer",4,{"Damage":1.25,"RuneLuck":1.2},5000],["Pulse",25,{"Credits":1.5,"RuneSpeed":1.3},2000],["Surge",150,{"Damage":1.5,"Redeploy":1.25},500],["Overdrive",1000,{"Credits":2,"RuneLuck":1.5},150],["Apex",10000,{"Damage":2,"Redeploy":1.5},40],["Mythic",150000,{"Credits":3,"RuneBulk":2},8],["Transcendent",3000000,{"Credits":5,"Damage":3},2]]},{"id":"Fortune","name":"Rune of Fortune","color":"#ffc446","where":"Armory (behind the Training Hub)","unlock":"Bronze 1","cost":"250 Redeploy","tiers":[["Copper",1,{"Redeploy":1.25},10000],["Silver",5,{"Cargo":1.25,"RuneBulk":1.2},4000],["Gilded",30,{"Redeploy":1.5},1500],["Jewel",200,{"Salvage":1.5,"RuneSpeed":1.25},400],["Royal",1500,{"Redeploy":2,"Cargo":1.5},120],["Treasure",20000,{"Credits":2,"RuneLuck":1.5},30],["Hoard",300000,{"Redeploy":3,"RuneBulk":2},6],["Midas",5000000,{"Credits":5,"Redeploy":5},2]]},{"id":"Tempest","name":"Rune of the Tempest","color":"#5ac8ff","where":"Sturmhorn Tavern (Sturmfeste)","unlock":"Silver 5","cost":"300 Crowns","tiers":[["Drizzle",1,{"Crowns":1.25},10000],["Gale",6,{"Momentum":1.25},4000],["Thunder",40,{"Crowns":1.5,"RuneSpeed":1.25},1500],["Cyclone",300,{"Damage":1.5,"Momentum":1.5},400],["Maelstrom",2500,{"Crowns":2,"RuneLuck":1.5},100],["Stormeye",40000,{"Credits":2,"Damage":2},25],["Stormborn",600000,{"Crowns":3,"RuneBulk":2},5],["Tempest King",10000000,{"Credits":5,"Crowns":5},2]]},{"id":"Unity","name":"Rune of Unity","color":"#ff7850","where":"Global: bought in the Shop","unlock":"Anyone","cost":"Robux","global":true,"tiers":[["Recruit",89,{"Credits":1.25},1000],["Ally",10,{"RuneLuck":1.5},200],["Comrade",0.89,{"Credits":2,"Redeploy":1.5},30],["Champion",0.1,{"Damage":2,"RuneBulk":1.5},5],["Legend",0.01,{"Credits":3,"Damage":3,"Redeploy":3},1]]}],"TIER_COLORS":["#c8d0dc","#6ee678","#5aaaff","#b478ff","#ff78c8","#ffc446","#ff8a3c","#ff4a5a"]}</script>
+</main>
+<footer>
+  <div class="foot">
+    <div>
+      <b>Hero Incremental</b>
+      <p>A Roblox hero shooter incremental by gaurd21. Codes, guides and calculators, updated with every patch. Not affiliated with or endorsed by Roblox Corporation.</p>
+    </div>
+    <div>
+      <b>Game</b>
+      <a href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener">Play on Roblox</a>
+      <a href="/hero-incremental-wiki/codes/">Codes</a>
+      <a href="/hero-incremental-wiki/updates/">Patch notes</a>
+      <a href="/hero-incremental-wiki/bots/">Bots</a>
+    </div>
+    <div>
+      <b>Guides</b>
+      <a href="/hero-incremental-wiki/heroes/">Heroes</a>
+      <a href="/hero-incremental-wiki/tier-list/">Tier list</a>
+      <a href="/hero-incremental-wiki/ranks/">Ranks &amp; unlocks</a>
+      <a href="/hero-incremental-wiki/runes/">Rune odds</a>
+      <a href="/hero-incremental-wiki/calculator/">Calculators</a>
+    </div>
+  </div>
+</footer>
+<script src="/hero-incremental-wiki/assets/site.js?v=bcc42141" defer></script>
+</body>
+</html>
