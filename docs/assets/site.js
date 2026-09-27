@@ -11,7 +11,7 @@ function fmt(n) {
   if (!isFinite(n)) return "∞";
   var u = ["", "K", "M", "B", "T", "Qa"], i = 0;
   while (Math.abs(n) >= 1000 && i < u.length - 1) { n /= 1000; i++; }
-  if (i === 0) return (Math.round(n * 100) / 100).toLocaleString("en-US");
+  if (i === 0) return (n >= 100 ? Math.round(n) : n >= 10 ? Math.round(n * 10) / 10 : Math.round(n * 100) / 100).toLocaleString("en-US");
   return (n >= 100 ? n.toFixed(0) : n >= 10 ? n.toFixed(1) : n.toFixed(2)).replace(/\.?0+$/, "") + u[i];
 }
 function dur(sec) {
@@ -31,7 +31,15 @@ if (document.body.getAttribute("data-page") === "home" && OLD[hash]) { location.
 
 // ---------------------------------------------------------------- nav: keep the current tab visible on phones
 var cur = $(".nav a[aria-current]");
-if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: "nearest", inline: "center" });
+var navEl = $(".nav");
+if (cur && navEl && navEl.scrollWidth > navEl.clientWidth + 2) navEl.scrollLeft = Math.max(0, cur.offsetLeft - navEl.clientWidth / 2 + cur.offsetWidth / 2);
+
+// ---------------------------------------------------------------- "More" menu closes when you click away
+var more = $("details.more");
+if (more) {
+  document.addEventListener("click", function (ev) { if (more.open && !more.contains(ev.target)) more.open = false; });
+  document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") more.open = false; });
+}
 
 // ---------------------------------------------------------------- copy buttons
 $$("button.copy[data-code]").forEach(function (b) {
@@ -80,7 +88,7 @@ function chances(altar, luck) {
   }
   return out;
 }
-function oddsText(p) { if (p <= 0) return "–"; if (p >= 0.1) return (p * 100).toFixed(1).replace(/\.0$/, "") + "%"; return "1/" + fmt(1 / p); }
+function oddsText(p) { if (p <= 0) return "–"; if (p >= 0.1) return (p * 100).toFixed(1).replace(/\.0$/, "") + "%"; var n = 1 / p; return "1/" + (n < 1000 ? Math.round(n) : fmt(n)); }
 function v(id) { var e = document.getElementById(id); return e.type === "checkbox" ? e.checked : Number(e.value); }
 function on(ids, fn) { ids.forEach(function (id) { document.getElementById(id).addEventListener("input", fn); }); fn(); }
 
@@ -89,17 +97,20 @@ function on(ids, fn) { ids.forEach(function (id) { document.getElementById(id).a
   var sel = $("#ro-altar");
   if (!sel) return;
   D.ALTARS.forEach(function (a) { if (!a.global) sel.appendChild(el('<option value="' + a.id + '">' + a.name + "</option>")); });
-  on(["ro-altar", "ro-pass-luck", "ro-pot-luck", "ro-shop-luck", "ro-attune", "ro-tierluck", "ro-pass-speed", "ro-pass-bulk", "ro-pass-clone", "ro-shop-speed"], function () {
-    ["ro-shop-luck", "ro-attune", "ro-shop-speed"].forEach(function (id) { document.getElementById(id + "-o").textContent = v(id); });
+  var ranges = ["ro-cluck", "ro-rluck", "ro-cspeed", "ro-rspeed", "ro-cbulk", "ro-rbulk", "ro-field", "ro-attune", "ro-shop"];
+  on(["ro-altar", "ro-tierluck", "ro-pass-luck", "ro-pass-speed", "ro-pass-bulk", "ro-pass-clone", "ro-pots", "ro-rush"].concat(ranges), function () {
+    ranges.forEach(function (id) { document.getElementById(id + "-o").textContent = v(id); });
     var a = D.ALTARS.filter(function (x) { return x.id === sel.value; })[0];
-    var luck = (1 + 0.25 * v("ro-attune")) * Math.max(1, v("ro-tierluck") || 1) * (1 + 0.1 * v("ro-shop-luck")) * (v("ro-pass-luck") ? 1.5 : 1) * (v("ro-pot-luck") ? 2 : 1);
-    var speed = 2 * (1 + 0.1 * v("ro-shop-speed")) * (v("ro-pass-speed") ? 1.5 : 1);
-    var bulk = v("ro-pass-bulk") ? 1.5 : 1;
+    var field = 1 + 0.15 * v("ro-field"), shop = 1 + 0.1 * v("ro-shop"), pot = v("ro-pots") ? 2 : 1;
+    var luck = (1 + 0.25 * v("ro-cluck")) * (1 + 0.25 * v("ro-rluck")) * field * (1 + 0.25 * v("ro-attune")) * shop
+      * Math.max(1, v("ro-tierluck") || 1) * (v("ro-pass-luck") ? 1.5 : 1) * pot * (v("ro-rush") ? 1.5 : 1);
+    var speed = 2 * (1 + 0.2 * v("ro-cspeed")) * (1 + 0.2 * v("ro-rspeed")) * field * shop * (v("ro-pass-speed") ? 1.5 : 1) * pot;
+    var bulk = (1 + 0.3 * v("ro-cbulk")) * (1 + 0.3 * v("ro-rbulk")) * field * shop * (v("ro-pass-bulk") ? 1.5 : 1) * pot;
     var clone = 1 + (v("ro-pass-clone") ? 1 : 0);
     var rps = speed * bulk * clone;
     $("#ro-readout").innerHTML =
-      "<div><b>×" + luck.toFixed(2) + "</b><span>Luck</span></div><div><b>" + speed.toFixed(1) + "/s</b><span>Speed</span></div>" +
-      "<div><b>" + bulk.toFixed(1) + "</b><span>Bulk</span></div><div><b>" + clone + "</b><span>Clone</span></div>" +
+      "<div><b>×" + fmt(luck) + "</b><span>Luck</span></div><div><b>" + fmt(speed) + "/s</b><span>Speed</span></div>" +
+      "<div><b>" + fmt(bulk) + "</b><span>Bulk</span></div><div><b>" + clone + "</b><span>Clone</span></div>" +
       '<div><b style="color:var(--orange)">' + fmt(rps) + "/s</b><span>Runes per second</span></div>";
     var ch = chances(a, luck);
     $("#ro-table").innerHTML = a.tiers.map(function (t, i) {
@@ -108,6 +119,22 @@ function on(ids, fn) { ids.forEach(function (id) { document.getElementById(id).a
         '</td><td class="r num">' + oddsText(ch[i]) + '</td><td class="r num">' + dur(1 / perSec) + '</td><td class="r num">' + fmt(perSec * 3600) +
         '</td><td class="r num">' + dur(t[3] / perSec) + "</td></tr>";
     }).join("");
+  });
+})();
+
+// redeploy + SR
+(function () {
+  var sel = $("#rd-rank");
+  if (!sel) return;
+  D.RANKS.forEach(function (r, i) { if (i >= 1) sel.appendChild(el('<option value="' + i + '"' + (i === 2 ? " selected" : "") + ">" + r.name + "</option>")); });
+  on(["rd-rank", "rd-credits", "rd-rm", "rd-ft", "rd-boost", "rd-earned"], function () {
+    ["rd-rm", "rd-ft"].forEach(function (id) { document.getElementById(id + "-o").textContent = v(id); });
+    var rank = Number(sel.value), credits = Math.max(0, v("rd-credits") || 0), min = D.MIN[rank - 1] || 0;
+    var rp = credits < min ? 0 : Math.max(1, Math.floor(Math.sqrt(credits / 150) * Math.pow(2, v("rd-rm")) * (1 + 0.1 * v("rd-ft")) * Math.max(1, v("rd-boost") || 1)));
+    var earned = Math.max(0, v("rd-earned") || 0);
+    var srNow = Math.floor(Math.sqrt(earned / 2)), srAfter = Math.floor(Math.sqrt((earned + rp) / 2));
+    $("#rd-readout").innerHTML = '<div><b style="color:var(--orange)">' + (credits < min ? "Need " + fmt(min) : fmt(rp)) + "</b><span>Redeploy points</span></div>" +
+      "<div><b>" + fmt(rp * 100) + "</b><span>Rank XP</span></div><div><b>" + fmt(srNow) + " → " + fmt(srAfter) + "</b><span>SR at promotion</span></div>";
   });
 })();
 

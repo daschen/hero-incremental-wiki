@@ -1,90 +1,126 @@
 {
  "": {
-  "hash": "0522ddc46328d3a059f12d0caaa34028bef78c16",
-  "date": "2026-09-24"
+  "hash": "b01eb2cd573e8ee80fc30b32a11d94e47a358b31",
+  "date": "2026-09-26"
  },
  "codes/": {
-  "hash": "d65da2d9f4fcef2a766b759eec4db5c6ebf2e885",
-  "date": "2026-09-24"
+  "hash": "0c20a4a2f9c11b8585098ce02254f53ee2825353",
+  "date": "2026-09-26"
  },
  "heroes/": {
-  "hash": "3cb5468504e37c24bde9158ae2da73e2c1a20da7",
-  "date": "2026-09-24"
+  "hash": "fcda4b69a610e1d3a9032342814e94f9dfb927c3",
+  "date": "2026-09-26"
  },
  "heroes/bulwark/": {
-  "hash": "75b992af55639cc56bf24e8b693f6c138b85ec02",
-  "date": "2026-09-24"
+  "hash": "5f826cb662dc3cc312c496d9c237aee0a2d4d7c7",
+  "date": "2026-09-26"
  },
  "heroes/anchor/": {
-  "hash": "dd574213f8edf67a661cd5cedef3fb4b7c42dc39",
-  "date": "2026-09-24"
+  "hash": "a7e752ac18e6f3e3c69bd295cbb34dccdb24bbee",
+  "date": "2026-09-26"
  },
  "heroes/vanguard/": {
-  "hash": "5be23d3cef7bc03b8f8098fdf16d24514fa48ff0",
-  "date": "2026-09-24"
+  "hash": "3a409acfdae0d0dc66c83d5524ad19c150ea382d",
+  "date": "2026-09-26"
  },
  "heroes/flicker/": {
-  "hash": "ca3d845c3b523adc56e51b4588b9e6a7c5b1d292",
-  "date": "2026-09-24"
+  "hash": "f3260ac81d1e78554e99dabc8f308a27959c8bfa",
+  "date": "2026-09-26"
  },
  "heroes/havoc/": {
-  "hash": "e116ddac970dd846fbac584be8abb7198df3fd2b",
-  "date": "2026-09-24"
+  "hash": "254ff8d8ab0f13dd9278f096af8d18e12760bedc",
+  "date": "2026-09-26"
  },
  "heroes/longshot/": {
-  "hash": "3921c005057792965ca12a9f5b54453ded873c84",
-  "date": "2026-09-24"
+  "hash": "b493a94eec203db1f7c64e0c53db7f93ed606c19",
+  "date": "2026-09-26"
  },
  "heroes/kestrel/": {
-  "hash": "c8809ff936b07661ae320a95b16bea42bf2b2a26",
-  "date": "2026-09-24"
+  "hash": "f0f996df039676901f541245a6f75f6dd29ccddb",
+  "date": "2026-09-26"
  },
  "heroes/ember/": {
-  "hash": "fec97f069f625b797e8dcb62b3778f153ebd2f3d",
-  "date": "2026-09-24"
+  "hash": "eb4acfb2cfd0880c0557b0bb25f64afb9636a4cd",
+  "date": "2026-09-26"
  },
  "heroes/rivet/": {
-  "hash": "69bb22097d582f2ff3522312c3a1fe86915e9f35",
-  "date": "2026-09-24"
+  "hash": "e3a8f874d441f213fc2a56f3edd8854fda84116e",
+  "date": "2026-09-26"
  },
  "heroes/broker/": {
-  "hash": "5f0b580480770f8d9379f92a603cc0cbbffeb031",
-  "date": "2026-09-24"
+  "hash": "9ba42748493f6a33376d08803785aed008a05bbb",
+  "date": "2026-09-26"
  },
  "heroes/solace/": {
-  "hash": "0f212a28b9f9c72e5208cc51bc4f183e407f6e67",
-  "date": "2026-09-24"
+  "hash": "b5381233b36a2b7ca5a410fc43fb1d50b00bdbe4",
+  "date": "2026-09-26"
  },
  "heroes/vesper/": {
-  "hash": "094a9c5b7a09e83e2ede50594a87ee64c669a46e",
-  "date": "2026-09-24"
+  "hash": "ea014e747b5f4ce2c6a3c01361b1bcb6c7708306",
+  "date": "2026-09-26"
  },
  "tier-list/": {
-  "hash": "f46e9d669acc4cae65b597aed2f230d2b3f469c0",
-  "date": "2026-09-24"
+  "hash": "86e6c26f9bb5ace0f1ed0a9ebcae6cc1cfc21a5e",
+  "date": "2026-09-26"
  },
  "ranks/": {
-  "hash": "16419eaf19f9d137facf85b94856dbccbdda87d1",
-  "date": "2026-09-24"
+  "hash": "06778f349ba7bd887aa99b755dadfd209dc9d488",
+  "date": "2026-09-26"
  },
  "runes/": {
-  "hash": "47baa9e71fd1b51a2303aa4415c4fe450c77fb59",
-  "date": "2026-09-24"
+  "hash": "f591b0c069b7e92e2e10ba84254ae54b0956b117",
+  "date": "2026-09-26"
  },
  "calculator/": {
-  "hash": "0db43e84d4b566be7100b8d8585c18e13d45cef8",
-  "date": "2026-09-24"
+  "hash": "d87074602c558ca32afa93393dc645a698d21316",
+  "date": "2026-09-26"
  },
  "bots/": {
-  "hash": "5a69ddbd11eb414b54be8cb8411f3aa8e0c1d6e0",
-  "date": "2026-09-24"
+  "hash": "593cf6b5c687cd3ab592dd179f40de7803564fe3",
+  "date": "2026-09-26"
  },
  "updates/": {
-  "hash": "509d3fe5af5711f86857ebfb615851d5c8552a88",
-  "date": "2026-09-24"
+  "hash": "09baa6868219133040cc66203159e00b4e1ce470",
+  "date": "2026-09-26"
  },
  "404.html": {
-  "hash": "3e47cfdcd1a77521a0c4e03b8c695330edc5b5d8",
-  "date": "2026-09-24"
+  "hash": "315885c30321e30094a9db43d88d4ff846b159dc",
+  "date": "2026-09-26"
+ },
+ "guide/": {
+  "hash": "ade6dbdf9f1133bf887c4fe0a612bd21359f6eba",
+  "date": "2026-09-26"
+ },
+ "faq/": {
+  "hash": "cec4091f03aa50be56c9629ee8308bbb548b983f",
+  "date": "2026-09-26"
+ },
+ "currencies/": {
+  "hash": "2c189bc1c442e959ea062be8950faef38e5616ea",
+  "date": "2026-09-26"
+ },
+ "upgrades/": {
+  "hash": "3e39587b7e676930ad40a5428902b26e600a37c2",
+  "date": "2026-09-26"
+ },
+ "objectives/": {
+  "hash": "95a94857c095d4edf52ae3c6d16ab8698fb85dd5",
+  "date": "2026-09-26"
+ },
+ "sturmfeste/": {
+  "hash": "33d8f8e2f1f1ce8946010b32dc436a39bdaf5b82",
+  "date": "2026-09-26"
+ },
+ "events/": {
+  "hash": "b9b4636112e0d520245cb8442899a2495c670217",
+  "date": "2026-09-26"
+ },
+ "skins/": {
+  "hash": "9369f87f5ce2e2378d31917d79bd984dcbf43ed1",
+  "date": "2026-09-26"
+ },
+ "shop/": {
+  "hash": "d34353c7ff19767d13d9f03c6298f7d5f8527df2",
+  "date": "2026-09-26"
  }
 }

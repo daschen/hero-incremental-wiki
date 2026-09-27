@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hero Incremental Calculators: Rune Odds, Rank-Up &amp; Ticket Planner</title>
-<meta name="description" content="Free Hero Incremental calculators: rune odds and time to [MAX] for every altar, time to your next rank, and how long to max ticket boosts.">
+<title>Hero Incremental Calculators: Rune Odds, Rank-Up, Redeploy &amp; Tickets</title>
+<meta name="description" content="Free Hero Incremental calculators: rune odds and time to [MAX] for every altar, time to your next rank, Redeploy points and SR, and ticket boost planning.">
 <link rel="canonical" href="https://daschen.github.io/hero-incremental-wiki/calculator/">
 <meta property="og:url" content="https://daschen.github.io/hero-incremental-wiki/calculator/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Hero Incremental Wiki">
-<meta property="og:title" content="Hero Incremental Calculators: Rune Odds, Rank-Up &amp; Ticket Planner">
-<meta property="og:description" content="Free Hero Incremental calculators: rune odds and time to [MAX] for every altar, time to your next rank, and how long to max ticket boosts.">
+<meta property="og:title" content="Hero Incremental Calculators: Rune Odds, Rank-Up, Redeploy &amp; Tickets">
+<meta property="og:description" content="Free Hero Incremental calculators: rune odds and time to [MAX] for every altar, time to your next rank, Redeploy points and SR, and ticket boost planning.">
 <meta property="og:image" content="https://daschen.github.io/hero-incremental-wiki/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,64 +22,87 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,600;1,700;1,800;1,900&family=Jost:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/hero-incremental-wiki/assets/site.css?v=bcc42141">
+<link rel="stylesheet" href="/hero-incremental-wiki/assets/site.css?v=d550d781">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://daschen.github.io/hero-incremental-wiki/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://daschen.github.io/hero-incremental-wiki/calculator/"}]}</script>
 </head>
 <body data-base="/hero-incremental-wiki/" data-page="calculator">
 <header class="topbar">
   <div class="topbar-in">
     <a class="brand" href="/hero-incremental-wiki/" aria-label="Hero Incremental wiki home"><svg viewBox="0 0 40 40" aria-hidden="true"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="#f99e1a" stroke-width="3"/><polygon points="13,11 18,11 17,18 23,18 24,11 29,11 26,29 21,29 22,22 16,22 15,29 10,29" fill="#eef4ff"/></svg><b>HERO <span>INCREMENTAL</span></b></a>
-    <nav class="nav" aria-label="Sections"><a href="/hero-incremental-wiki/"><span>Home</span></a><a href="/hero-incremental-wiki/codes/"><span>Codes</span></a><a href="/hero-incremental-wiki/heroes/"><span>Heroes</span></a><a href="/hero-incremental-wiki/tier-list/"><span>Tier List</span></a><a href="/hero-incremental-wiki/ranks/"><span>Ranks</span></a><a href="/hero-incremental-wiki/runes/"><span>Runes</span></a><a href="/hero-incremental-wiki/calculator/" aria-current="page"><span>Tools</span></a><a href="/hero-incremental-wiki/bots/"><span>Bots</span></a><a href="/hero-incremental-wiki/updates/"><span>Updates</span></a></nav>
+    <nav class="nav" aria-label="Sections"><a href="/hero-incremental-wiki/codes/"><span>Codes</span></a><a href="/hero-incremental-wiki/guide/"><span>Guide</span></a><a href="/hero-incremental-wiki/heroes/"><span>Heroes</span></a><a href="/hero-incremental-wiki/tier-list/"><span>Tier List</span></a><a href="/hero-incremental-wiki/ranks/"><span>Ranks</span></a><a href="/hero-incremental-wiki/runes/"><span>Runes</span></a><a href="/hero-incremental-wiki/upgrades/"><span>Upgrades</span></a><a href="/hero-incremental-wiki/calculator/" aria-current="page"><span>Tools</span></a><a href="/hero-incremental-wiki/faq/"><span>FAQ</span></a></nav>
+    <details class="more"><summary><span>More ▾</span></summary><div class="more-menu"><a href="/hero-incremental-wiki/currencies/"><img src="/hero-incremental-wiki/img/Credits.webp" alt="" width="26" height="26">Currencies</a><a href="/hero-incremental-wiki/objectives/"><img src="/hero-incremental-wiki/img/Payload.webp" alt="" width="26" height="26">Objectives</a><a href="/hero-incremental-wiki/sturmfeste/"><img src="/hero-incremental-wiki/img/Island.webp" alt="" width="26" height="26">Sturmfeste</a><a href="/hero-incremental-wiki/events/"><img src="/hero-incremental-wiki/img/WorldBoss.webp" alt="" width="26" height="26">Events</a><a href="/hero-incremental-wiki/skins/"><img src="/hero-incremental-wiki/img/Season.webp" alt="" width="26" height="26">Skins & Season</a><a href="/hero-incremental-wiki/shop/"><img src="/hero-incremental-wiki/img/Ticket.webp" alt="" width="26" height="26">Shop & Passes</a><a href="/hero-incremental-wiki/bots/"><img src="/hero-incremental-wiki/img/Turrets.webp" alt="" width="26" height="26">Bots</a><a href="/hero-incremental-wiki/updates/"><img src="/hero-incremental-wiki/img/Guide.webp" alt="" width="26" height="26">Updates</a></div></details>
     <a class="btn btn-primary btn-sm play-mini" href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener"><span>Play</span></a>
   </div>
 </header>
 <main>
 <section class="wrap page">
-  <div class="page-head">
+  <div class="page-head" style="max-width:900px;">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/hero-incremental-wiki/">Home</a><span aria-hidden="true">/</span><span>Calculators</span></nav>
     <div class="eyebrow">Calculators</div>
     <h1>Hero Incremental calculators</h1>
-    <p class="lede">Plug in your numbers to plan rune farming, rank ups and ticket spending. They use the same formulas as the game.</p>
-    <p class="stamp">Updated <b>September 24, 2026</b></p>
+    <p class="lede">Plan rune farming, rank ups, Redeploys and ticket spending with the game's own formulas.</p>
+    <p class="stamp">Updated <b>September 26, 2026</b></p>
   </div>
+  
+  <nav class="toc" aria-label="On this page"><a class="chip" href="#runes"><span>Rune odds</span></a><a class="chip" href="#rank"><span>Rank-up</span></a><a class="chip" href="#redeploy"><span>Redeploy & SR</span></a><a class="chip" href="#tickets"><span>Tickets</span></a></nav>
   <div class="panel tool altar-sec" id="runes">
     <div class="form">
-      <h2 style="margin: 0;">Rune odds calculator</h2>
+      <h2 style="margin: 0;">Rune odds</h2>
       <div class="field"><label for="ro-altar">Altar</label><select id="ro-altar"></select></div>
-      <div class="field"><span class="lbl">Luck</span>
+      <div class="field"><label for="ro-cluck">Rune Luck (Credit tab)</label><div class="range-row"><input type="range" id="ro-cluck" min="0" max="15" step="1" value="3"><output id="ro-cluck-o">3</output></div></div>
+      <div class="field"><label for="ro-rluck">Rune Luck (Redeploy tab)</label><div class="range-row"><input type="range" id="ro-rluck" min="0" max="15" step="1" value="2"><output id="ro-rluck-o">2</output></div></div>
+      <div class="field"><label for="ro-cspeed">Rune Speed (Credit tab)</label><div class="range-row"><input type="range" id="ro-cspeed" min="0" max="15" step="1" value="3"><output id="ro-cspeed-o">3</output></div></div>
+      <div class="field"><label for="ro-rspeed">Rune Speed (Redeploy tab)</label><div class="range-row"><input type="range" id="ro-rspeed" min="0" max="15" step="1" value="2"><output id="ro-rspeed-o">2</output></div></div>
+      <div class="field"><label for="ro-cbulk">Rune Bulk (Credit tab)</label><div class="range-row"><input type="range" id="ro-cbulk" min="0" max="12" step="1" value="1"><output id="ro-cbulk-o">1</output></div></div>
+      <div class="field"><label for="ro-rbulk">Rune Bulk (Redeploy tab)</label><div class="range-row"><input type="range" id="ro-rbulk" min="0" max="12" step="1" value="1"><output id="ro-rbulk-o">1</output></div></div>
+      <div class="field"><label for="ro-field">Field Command (Command)</label><div class="range-row"><input type="range" id="ro-field" min="0" max="25" step="1" value="3"><output id="ro-field-o">3</output></div></div>
+      <div class="field"><label for="ro-attune">Rune Attunement (Cargo Bay)</label><div class="range-row"><input type="range" id="ro-attune" min="0" max="3" step="1" value="0"><output id="ro-attune-o">0</output></div></div>
+      <div class="field"><label for="ro-shop">Ticket boosts (each)</label><div class="range-row"><input type="range" id="ro-shop" min="0" max="10" step="1" value="0"><output id="ro-shop-o">0</output></div></div>
+      <div class="field"><label for="ro-tierluck">Luck from owned runes and index (×)</label><input type="number" id="ro-tierluck" min="1" step="0.05" value="1"></div>
+      <div class="field"><span class="lbl">Passes &amp; potions</span>
         <label class="check"><input type="checkbox" id="ro-pass-luck"> Rune Luck pass (×1.5)</label>
-        <label class="check"><input type="checkbox" id="ro-pot-luck"> Luck Potion active (×2)</label>
-      </div>
-      <div class="field"><label for="ro-shop-luck">"More Luck" boost level</label><div class="range-row"><input type="range" id="ro-shop-luck" min="0" max="10" value="3"><output id="ro-shop-luck-o">3</output></div></div>
-      <div class="field"><label for="ro-attune">Rune Attunement (Cargo Bay)</label><div class="range-row"><input type="range" id="ro-attune" min="0" max="3" value="1"><output id="ro-attune-o">1</output></div></div>
-      <div class="field"><label for="ro-tierluck">Luck from owned runes (×)</label><input type="number" id="ro-tierluck" min="1" step="0.05" value="1.2"></div>
-      <div class="field"><span class="lbl">Rolling</span>
         <label class="check"><input type="checkbox" id="ro-pass-speed"> Rune Speed pass (×1.5)</label>
         <label class="check"><input type="checkbox" id="ro-pass-bulk"> Rune Bulk pass (×1.5)</label>
         <label class="check"><input type="checkbox" id="ro-pass-clone"> Rune Clone pass (+1)</label>
+        <label class="check"><input type="checkbox" id="ro-pots"> Luck, Speed and Bulk potions (×2 each)</label>
+        <label class="check"><input type="checkbox" id="ro-rush"> Rune Rush (×1.5 Luck)</label>
       </div>
-      <div class="field"><label for="ro-shop-speed">"More Speed" boost level</label><div class="range-row"><input type="range" id="ro-shop-speed" min="0" max="10" value="2"><output id="ro-shop-speed-o">2</output></div></div>
     </div>
     <div class="results">
       <div class="readout" id="ro-readout"></div>
-      <div class="table-scroll"><table><thead><tr><th>Tier</th><th class="r">Base odds</th><th class="r">Your odds</th><th class="r">First pull in</th><th class="r">Per hour</th><th class="r">[MAX] in</th></tr></thead><tbody id="ro-table"></tbody></table></div>
-      <p class="note">Example build shown. Times are averages: rare tiers can land much sooner or later. "Luck from owned runes" is the Luck bonus on your Runes menu stats line.</p>
+      <div class="table-scroll"><table><thead><tr><th>Tier</th><th class="r">Base</th><th class="r">Your odds</th><th class="r">First pull in</th><th class="r">Per hour</th><th class="r">[MAX] in</th></tr></thead><tbody id="ro-table"></tbody></table></div>
+      <p class="note">Example build shown. Times are averages; rare tiers can land much sooner or later. Rune bonuses themselves (like Glimmer's Luck) aren't included unless you add them in "Luck from owned runes".</p>
     </div>
   </div>
   <div class="panel tool altar-sec" id="rank" style="--accent: var(--sky);">
     <div class="form">
-      <h2 style="margin: 0;">Rank-up calculator</h2>
+      <h2 style="margin: 0;">Rank-up</h2>
       <div class="field"><label for="rk-rank">Current rank</label><select id="rk-rank"></select></div>
-      <div class="field"><label for="rk-credits">Credits you have</label><input type="number" id="rk-credits" min="0" step="1000" value="120000"></div>
-      <div class="field"><label for="rk-income">Credits per minute</label><input type="number" id="rk-income" min="1" step="1000" value="45000"></div>
+      <div class="field"><label for="rk-credits">Credits you have</label><input type="number" id="rk-credits" min="0" step="1000" value="12000"></div>
+      <div class="field"><label for="rk-income">Credits per minute</label><input type="number" id="rk-income" min="1" step="1000" value="9000"></div>
     </div>
     <div class="results">
       <div class="readout" id="rk-readout"></div>
       <div class="table-scroll"><table><thead><tr><th>Next rank</th><th class="r">Cost</th><th class="r">Still needed</th><th class="r">Time at this income</th></tr></thead><tbody id="rk-table"></tbody></table></div>
-      <p class="note">Example numbers shown. Your income jumps after every rank up (higher Credit multiplier), so later ranks arrive sooner than this estimate.</p>
+      <p class="note">Example numbers shown. Income jumps after every rank up and Redeploy, so later ranks arrive much sooner than this.</p>
     </div>
   </div>
-  <div class="panel tool altar-sec" id="tickets" style="--accent: var(--warn);">
+  <div class="panel tool altar-sec" id="redeploy" style="--accent: var(--warn);">
+    <div class="form">
+      <h2 style="margin: 0;">Redeploy &amp; SR</h2>
+      <div class="field"><label for="rd-rank">Current rank</label><select id="rd-rank"></select></div>
+      <div class="field"><label for="rd-credits">Credits you'd cash in</label><input type="number" id="rd-credits" min="0" step="1000" value="2000000"></div>
+      <div class="field"><label for="rd-rm">Redeploy Multiplier level</label><div class="range-row"><input type="range" id="rd-rm" min="0" max="12" step="1" value="3"><output id="rd-rm-o">3</output></div></div>
+      <div class="field"><label for="rd-ft">Fast Track level (SR)</label><div class="range-row"><input type="range" id="rd-ft" min="0" max="25" step="1" value="0"><output id="rd-ft-o">0</output></div></div>
+      <div class="field"><label for="rd-boost">Other Redeploy boosts (×)</label><input type="number" id="rd-boost" min="1" step="0.1" value="1"></div>
+      <div class="field"><label for="rd-earned">Redeploy points earned this tier</label><input type="number" id="rd-earned" min="0" step="100" value="50000"></div>
+    </div>
+    <div class="results">
+      <div class="readout" id="rd-readout"></div>
+      <div class="prose"><p class="lede-sm">RP = √(Credits ÷ 150) × 2<sup>Redeploy Multiplier</sup> × (1 + 10% × Fast Track) × other boosts (Logistics Network, runes, VIP, 2× Redeploy pass). SR at promotion = √(RP earned this tier ÷ 2), rounded down.</p></div>
+    </div>
+  </div>
+  <div class="panel tool altar-sec" id="tickets" style="--accent: var(--good);">
     <div class="form">
       <h2 style="margin: 0;">Ticket planner</h2>
       <div class="field"><label for="tk-hours">Hours played per day</label><div class="range-row"><input type="range" id="tk-hours" min="0.5" max="8" step="0.5" value="2"><output id="tk-hours-o">2</output></div></div>
@@ -89,35 +112,31 @@
     <div class="results">
       <div class="readout" id="tk-readout"></div>
       <div class="table-scroll"><table><thead><tr><th>Level</th><th class="r">Ticket cost</th><th class="r">Running total</th><th class="r">Bonus</th><th class="r">Ready in</th></tr></thead><tbody id="tk-table"></tbody></table></div>
-      <p class="note">You earn 1 Ticket for every 5 minutes in the game (nothing while offline). Each boost level costs 3 Tickets more than the last. Potion packs cost 20 Tickets for 10 potions.</p>
+      <p class="note">Counts only the 1 Ticket per 5 minutes you get for playing; bosses, weekly boards and the Season Pass make it faster.</p>
     </div>
   </div>
 </section>
-<script type="application/json" id="hi-data">{"RANKS":[{"name":"Unranked","cost":0,"mult":1,"a":"#5a606a","b":"#bec6d0"},{"name":"Bronze 5","cost":2500,"mult":3,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 4","cost":20000,"mult":5,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 3","cost":710000,"mult":9,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 2","cost":330000000,"mult":14,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 1","cost":980000000,"mult":20,"a":"#6e3e20","b":"#e09e5c"},{"name":"Silver 5","cost":3000000000,"mult":40,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 4","cost":9000000000,"mult":60,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 3","cost":20000000000,"mult":90,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 2","cost":40000000000,"mult":135,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 1","cost":90000000000,"mult":200,"a":"#8c919b","b":"#ebf0f5"}],"ALTARS":[{"id":"Valor","name":"Rune of Valor","color":"#aa6eff","where":"Armory (behind the Training Hub)","unlock":"Bronze 2","cost":"25 Redeploy","tiers":[["Spark",1,{"Credits":1.25},10000],["Glimmer",4,{"Damage":1.25,"RuneLuck":1.2},5000],["Pulse",25,{"Credits":1.5,"RuneSpeed":1.3},2000],["Surge",150,{"Damage":1.5,"Redeploy":1.25},500],["Overdrive",1000,{"Credits":2,"RuneLuck":1.5},150],["Apex",10000,{"Damage":2,"Redeploy":1.5},40],["Mythic",150000,{"Credits":3,"RuneBulk":2},8],["Transcendent",3000000,{"Credits":5,"Damage":3},2]]},{"id":"Fortune","name":"Rune of Fortune","color":"#ffc446","where":"Armory (behind the Training Hub)","unlock":"Bronze 1","cost":"250 Redeploy","tiers":[["Copper",1,{"Redeploy":1.25},10000],["Silver",5,{"Cargo":1.25,"RuneBulk":1.2},4000],["Gilded",30,{"Redeploy":1.5},1500],["Jewel",200,{"Salvage":1.5,"RuneSpeed":1.25},400],["Royal",1500,{"Redeploy":2,"Cargo":1.5},120],["Treasure",20000,{"Credits":2,"RuneLuck":1.5},30],["Hoard",300000,{"Redeploy":3,"RuneBulk":2},6],["Midas",5000000,{"Credits":5,"Redeploy":5},2]]},{"id":"Tempest","name":"Rune of the Tempest","color":"#5ac8ff","where":"Sturmhorn Tavern (Sturmfeste)","unlock":"Silver 5","cost":"300 Crowns","tiers":[["Drizzle",1,{"Crowns":1.25},10000],["Gale",6,{"Momentum":1.25},4000],["Thunder",40,{"Crowns":1.5,"RuneSpeed":1.25},1500],["Cyclone",300,{"Damage":1.5,"Momentum":1.5},400],["Maelstrom",2500,{"Crowns":2,"RuneLuck":1.5},100],["Stormeye",40000,{"Credits":2,"Damage":2},25],["Stormborn",600000,{"Crowns":3,"RuneBulk":2},5],["Tempest King",10000000,{"Credits":5,"Crowns":5},2]]},{"id":"Unity","name":"Rune of Unity","color":"#ff7850","where":"Global: bought in the Shop","unlock":"Anyone","cost":"Robux","global":true,"tiers":[["Recruit",89,{"Credits":1.25},1000],["Ally",10,{"RuneLuck":1.5},200],["Comrade",0.89,{"Credits":2,"Redeploy":1.5},30],["Champion",0.1,{"Damage":2,"RuneBulk":1.5},5],["Legend",0.01,{"Credits":3,"Damage":3,"Redeploy":3},1]]}],"TIER_COLORS":["#c8d0dc","#6ee678","#5aaaff","#b478ff","#ff78c8","#ffc446","#ff8a3c","#ff4a5a"]}</script>
+<script type="application/json" id="hi-data">{"RANKS":[{"name":"Unranked","cost":0,"mult":1,"a":"#5a606a","b":"#bec6d0"},{"name":"Bronze 5","cost":5000.0,"mult":3,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 4","cost":45000.0,"mult":5,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 3","cost":540000.0,"mult":9,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 2","cost":75000000.0,"mult":14,"a":"#6e3e20","b":"#e09e5c"},{"name":"Bronze 1","cost":37000000000.0,"mult":20,"a":"#6e3e20","b":"#e09e5c"},{"name":"Silver 5","cost":130000000000000.0,"mult":40,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 4","cost":6.7e+21,"mult":60,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 3","cost":9.6e+22,"mult":90,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 2","cost":2e+23,"mult":135,"a":"#8c919b","b":"#ebf0f5"},{"name":"Silver 1","cost":1.7e+24,"mult":200,"a":"#8c919b","b":"#ebf0f5"}],"ALTARS":[{"id":"Fortune","name":"Rune of Fortune","color":"#ffc446","where":"Armory (behind the Training Hub)","unlock":"Bronze 2","rank":4,"focus":"Credits, Redeploy, Cargo and payload speed. Your first altar: max it before Bronze 1.","tiers":[["Copper",1,{"Credits":2},5000,""],["Silver",5,{"Redeploy":1.5,"Cargo":1.5,"RuneBulk":1.2},2000,""],["Gilded",30,{"PayloadSpeed":1.25,"Credits":2.5},1000,""],["Jewel",200,{"Redeploy":2,"RuneSpeed":1.25,"Cargo":2},300,""],["Royal",1500,{"PayloadSpeed":1.5,"Credits":3},250,"Payloads creep forward on their own at 25% speed."],["Treasure",20000,{"RuneLuck":1.5,"Credits":3},100,"Payloads escort themselves at 50% speed while you're away."],["Hoard",300000,{"Redeploy":5,"Cargo":3,"RuneBulk":2},40,""],["Midas",5000000,{"Redeploy":3,"Cargo":4,"Credits":4},15,""]]},{"id":"Valor","name":"Rune of Valor","color":"#aa6eff","where":"Armory (behind the Training Hub)","unlock":"Bronze 1","rank":5,"focus":"Damage and Credits. It maxes out around Silver 4\u20133.","tiers":[["Spark",1,{"Damage":2},10000,""],["Glimmer",4,{"RuneLuck":1.2,"Credits":2},5000,""],["Pulse",25,{"RuneSpeed":1.3,"Damage":2.5},2000,""],["Surge",150,{"Redeploy":1.5,"Credits":2.5},500,""],["Overdrive",1000,{"RuneLuck":1.5,"Damage":3},300,""],["Apex",10000,{"Redeploy":2,"Credits":3},120,""],["Mythic",150000,{"RuneBulk":2,"Damage":3},40,""],["Transcendent",3000000,{"Damage":3,"Credits":3},15,""]]},{"id":"Tempest","name":"Rune of the Tempest","color":"#5ac8ff","where":"Rune Sanctum (next to the Sturmhorn Tavern)","unlock":"Silver 5","rank":6,"focus":"Crowns, Momentum and damage for the Silver systems.","tiers":[["Drizzle",1,{"Crowns":1.25},10000,""],["Gale",6,{"Momentum":1.25},4000,""],["Thunder",40,{"Crowns":1.5,"RuneSpeed":1.25},1500,""],["Cyclone",300,{"Momentum":1.5,"Damage":1.5},400,""],["Maelstrom",2500,{"Crowns":2,"RuneLuck":1.5},100,""],["Stormeye",40000,{"Damage":2,"Credits":2},25,""],["Stormborn",600000,{"Crowns":3,"RuneBulk":2},5,""],["Tempest King",10000000,{"Crowns":5,"Credits":5},2,""]]},{"id":"Unity","name":"Rune of Unity","color":"#ff7850","where":"Global: bought with Robux in the Shop","unlock":"Anyone","rank":0,"global":true,"focus":"Whenever anyone buys Global Runes, every player in the server gets the rolls, and the whole server gets a Rune Rush.","tiers":[["Recruit",89,{"Credits":1.25},1000,""],["Ally",10,{"RuneLuck":1.5},200,""],["Comrade",0.89,{"Redeploy":1.5,"Credits":2},30,""],["Champion",0.1,{"RuneBulk":1.5,"Damage":2},5,""],["Legend",0.01,{"Redeploy":3,"Damage":3,"Credits":3},1,""]]}],"TIER_COLORS":["#c8d0dc","#6ee678","#5aaaff","#b478ff","#ff78c8","#ffc446","#ff8a3c","#ff4a5a"],"MIN":[4000,8000,15000,25000,40000,60000,80000,110000,150000,200000]}</script>
 </main>
 <footer>
   <div class="foot">
     <div>
       <b>Hero Incremental</b>
       <p>A Roblox hero shooter incremental by gaurd21. Codes, guides and calculators, updated with every patch. Not affiliated with or endorsed by Roblox Corporation.</p>
-    </div>
-    <div>
-      <b>Game</b>
-      <a href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener">Play on Roblox</a>
-      <a href="/hero-incremental-wiki/codes/">Codes</a>
-      <a href="/hero-incremental-wiki/updates/">Patch notes</a>
-      <a href="/hero-incremental-wiki/bots/">Bots</a>
+      <p style="margin-top:10px;"><a href="https://www.roblox.com/games/75558507087279" target="_blank" rel="noopener">▶ Play on Roblox</a></p>
     </div>
     <div>
       <b>Guides</b>
-      <a href="/hero-incremental-wiki/heroes/">Heroes</a>
-      <a href="/hero-incremental-wiki/tier-list/">Tier list</a>
-      <a href="/hero-incremental-wiki/ranks/">Ranks &amp; unlocks</a>
-      <a href="/hero-incremental-wiki/runes/">Rune odds</a>
-      <a href="/hero-incremental-wiki/calculator/">Calculators</a>
+      <a href="/hero-incremental-wiki/guide/">Beginner guide</a><a href="/hero-incremental-wiki/heroes/">Heroes</a><a href="/hero-incremental-wiki/tier-list/">Tier list</a><a href="/hero-incremental-wiki/ranks/">Ranks</a>
+      <a href="/hero-incremental-wiki/currencies/">Currencies</a><a href="/hero-incremental-wiki/upgrades/">Upgrades</a><a href="/hero-incremental-wiki/runes/">Runes</a><a href="/hero-incremental-wiki/faq/">FAQ</a>
+    </div>
+    <div>
+      <b>Game</b>
+      <a href="/hero-incremental-wiki/codes/">Codes</a><a href="/hero-incremental-wiki/objectives/">Objectives</a><a href="/hero-incremental-wiki/sturmfeste/">Sturmfeste</a><a href="/hero-incremental-wiki/events/">Events</a>
+      <a href="/hero-incremental-wiki/skins/">Skins &amp; Season</a><a href="/hero-incremental-wiki/shop/">Shop</a><a href="/hero-incremental-wiki/bots/">Bots</a><a href="/hero-incremental-wiki/calculator/">Calculators</a><a href="/hero-incremental-wiki/updates/">Updates</a>
     </div>
   </div>
 </footer>
-<script src="/hero-incremental-wiki/assets/site.js?v=bcc42141" defer></script>
+<script src="/hero-incremental-wiki/assets/site.js?v=d550d781" defer></script>
 </body>
 </html>
