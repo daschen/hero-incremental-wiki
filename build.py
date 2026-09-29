@@ -1160,6 +1160,12 @@ def main():
     manifest_path.write_text(json.dumps(manifest, indent=1), encoding="utf-8")
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                      + "\n".join(sitemap) + "\n</urlset>\n", encoding="utf-8")
+    # alternates for Search Console: a plain-text URL list and a sitemap index (fresh URLs if sitemap.xml gets stuck)
+    urls = [f"{SITE}/{p['path']}" for p in PAGES if p["path"] != "404.html"]
+    (OUT / "sitemap.txt").write_text("\n".join(urls) + "\n", encoding="utf-8")
+    newest = max(v["date"] for v in manifest.values())
+    (OUT / "sitemap-index.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                                           f"  <sitemap><loc>{SITE}/sitemap.xml</loc><lastmod>{newest}</lastmod></sitemap>\n</sitemapindex>\n", encoding="utf-8")
     print(f"built {len(PAGES)} pages -> {OUT} ({len(sitemap)} in sitemap)")
 
 
